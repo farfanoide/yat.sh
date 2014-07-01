@@ -4,11 +4,11 @@
 
 BUILD_DIR="../build"
 SRC_DIR="./"
-SCRIPT_NAME="yat"
-SCRIPT="$BUILD_DIR/$SCRIPT_NAME".sh
+SCRIPT_NAME="yat.sh"
+SCRIPT="$BUILD_DIR/$SCRIPT_NAME"
 
 # remove previous builds
-[ -f "$SCRIPT" ] && rm -f "$SCRIPT" && echo "Removed $SCRIPT"
+[ -f "$SCRIPT" ] && rm -f "$SCRIPT" && echo "Removed $SCRIPT";
 
 # start up the script
 echo "#!/usr/bin/env bash" > $SCRIPT

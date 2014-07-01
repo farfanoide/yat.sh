@@ -8,7 +8,7 @@
 [ $1 = 'version' ] && _print_version && exit 0 ;
 
 # arguments parsing loop
-while getopts ':hle:n:vc:o:d:-' option; do
+while getopts ':hle:n:vc:o:d:-:' option; do
     case "$option" in
         h)
             _usage ; exit 0 ;;

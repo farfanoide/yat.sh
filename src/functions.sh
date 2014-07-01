@@ -6,28 +6,26 @@ _check_for_tmux() {
 }
 
 # Print usage information if there's not enough arguments
-function _usage() {
-cat <<USAGE
-Usage: ${SCPT_NAME} [OPTIONS] SESSION
+_usage() {
+    echo "Usage: ${SCPT_NAME} [OPTIONS] SESSION"
 
-Launch reusable configurations for named tmux sessions.
+    echo "Launch reusable configurations for named tmux sessions."
 
-Options:
+    echo "Options:"
 
---help      Print help menu.
---list      List available session files and other running sessions.
---version   Print ${SCPT_NAME} version number
+    echo "--help      Print help menu."
+    echo "--list      List available session files and other running sessions."
+    echo "--version   Print ${SCPT_NAME} version number"
 
-Session management options:
+    echo "Session management options:"
 
--o SESSION [-l]              -- Open [local] session file for editing.
+    echo "-o SESSION [-l]              -- Open [local] session file for editing."
 
--n SESSION [-l] [-e EXAMPLE] -- Create [local] session file [from example].
+    echo "-n SESSION [-l] [-e EXAMPLE] -- Create [local] session file [from example]."
 
--c SESSION                   -- Copy session file to global directory.
+    echo "-c SESSION                   -- Copy session file to global directory."
 
--d SESSION                   -- Delete session file.
-USAGE
+    echo "-d SESSION                   -- Delete session file."
 }
 
 _print_sessions_array() {

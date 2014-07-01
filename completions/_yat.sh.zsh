@@ -1,9 +1,9 @@
-#compdef tmuxstart
+#compdef yat.sh
 # ------------------------------------------------------------------------------
 # Description
 # -----------
 #
-#  Completion script for tmuxstart (https://github.com/farfanoide/tmuxstart).
+#  Completion script for yat.sh (https://github.com/farfanoide/yat.sh).
 #
 # ------------------------------------------------------------------------------
 # Authors
