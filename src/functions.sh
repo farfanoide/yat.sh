@@ -1,32 +1,8 @@
 
 _check_for_tmux() {
-    if ! type tmux 2> /dev/null; then
-        echo -e  "${R}tmux not found or not in your PATH${RESET}"
-    fi
+    type tmux 2> /dev/null || echo -e "${R}tmux not found or not in your PATH${RESET}"
 }
 
-# Print usage information if there's not enough arguments
-_usage() {
-    echo "Usage: ${SCPT_NAME} [OPTIONS] SESSION"
-
-    echo "Launch reusable configurations for named tmux sessions."
-
-    echo "Options:"
-
-    echo "--help      Print help menu."
-    echo "--list      List available session files and other running sessions."
-    echo "--version   Print ${SCPT_NAME} version number"
-
-    echo "Session management options:"
-
-    echo "-o SESSION [-l]              -- Open [local] session file for editing."
-
-    echo "-n SESSION [-l] [-e EXAMPLE] -- Create [local] session file [from example]."
-
-    echo "-c SESSION                   -- Copy session file to global directory."
-
-    echo "-d SESSION                   -- Delete session file."
-}
 
 _print_sessions_array() {
     local sessions_array
