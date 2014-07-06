@@ -14,7 +14,7 @@
 # ------------------------------------------------------------------------------
 local sessions_dir running_sessions global_sessions
 
-sessions_dir=${TMUXSTART_DIR:-$HOME/.tmuxstart}
+sessions_dir=${YATSH_DIR:-$HOME/.yat.sh}
 
 global_sessions=($(\ls "$sessions_dir/globals"))
 local_sessions=($(\ls "$sessions_dir/locals"))
