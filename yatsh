@@ -1,0 +1,11 @@
+#= DESCRIPTION: Basic tmux session
+
+new_session -n 'Editor'
+
+send_line 'Editor' "${EDITOR:-vi}"
+hsplit 'Editor' -p 20
+send_line 'Editor' 'cd test && bats tests.bats'
+
+
+# -*- mode: sh -*-
+# vi: set ft=sh :

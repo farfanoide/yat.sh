@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$(dirname $0)/helpers.sh"
+. "${YATSH_ROOT}/lib/session_helpers.sh"
 
 TMUX_OLD=$TMUX
 TMUX=

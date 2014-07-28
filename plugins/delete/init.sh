@@ -2,7 +2,11 @@
 echo 'not implemented yet'
 
 echo "pasamos por delete con $*"
+echo 'no te olvides de importar global_helpers'
+
 [ "$1" = '--help' ] && echo " $plugin SESSION -- Delete session file."
+
+
 _delete_session_file() {
     local session_file confirm filename
     filename=$1
