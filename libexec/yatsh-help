@@ -4,8 +4,9 @@
 
 [ ! $# -gt 0 ] && _usage && return 0
 
-COMMAND=$1; shift
-if _is_builtin $COMMAND; then
-    _run_builtin $COMMAND --help
+COMMAND=$(command -v "yatsh-${1}")
+
+if [ ! -z "$COMMAND" ]; then
+    exec $COMMAND --help
 fi
 

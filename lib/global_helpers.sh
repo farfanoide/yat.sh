@@ -3,6 +3,7 @@
 _file_exists() {
     [ -e "$1" -o -h "$1" ]
 }
+
 _set_session_file() {
     local filename=$1
 
@@ -30,6 +31,10 @@ _is_builtin(){
     done
     return 1
 }
+_is_command() {
+    local command="$1"; shift
+    [ ! -z $(command -v yatsh-"$command") ]
+}
 
 _is_plugin() {
     # local cmd; cmd=$1
@@ -40,7 +45,8 @@ _is_plugin() {
 }
 _is_session() {
     local session=$1
-    // buscar en todas las carpetas de sessiones
+    # buscar en todas las carpetas de sessiones
+    # TODO: check for a "find" alternative (mac compatible)
     for dir in $SESSIONS_DIR/*; do
         for file in $dir/*; do
             [ $file = $session ] && return 0
@@ -61,7 +67,8 @@ _find_plugin() {
 
 _run_builtin(){
     local command=$1; shift
-    . "$PLUGINS_DIR/$command/init.sh" $*
+    yatsh-$command $*
+    # . "$PLUGINS_DIR/$command/init.sh" $*
 }
 _run_plugin(){
     echo running plugin $*

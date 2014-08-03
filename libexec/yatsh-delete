@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+[ "$1" = '--help' ] && echo -e "${R}$(basename $0) SESSION -- Delete session file."
+
+. "${YATSH_ROOT}/lib/global_helpers.sh"
+
+filename=$1
+
+if _file_exists "${YATSH_DIR}/sessions/${filename}"; then
+    echo -e "${R}Are you sure you want to remove \"$filename\"? [y/N]$RESET"
+    read confirm
+    [[ $confirm =~ 'y' ]] && rm -v "${YATSH_DIR}/sessions/${filename}" && exit 0
+else
+    echo -e "Session file for \"$filename\" not found."
+fi
+exit 1

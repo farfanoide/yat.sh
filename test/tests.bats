@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-. "../src/functions.sh"
+. "../lib/global_helpers.sh"
 load 'test_helpers'
 
 

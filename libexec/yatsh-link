@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+usage() {
+    echo 'link help'
+}
+
+[ "$1" = '--help' -o $# -lt 1 ] && usage || echo 'not implemented yet'
+
+source=$1 ; shift
+link_session_file() {
+    if [ -f "./$source" -a ! -f "${YATSH_DIR}/sessions/${source}" ]; then
+        ln -s "$PWD/$source" "${YATSH_DIR}/sessions" && exit 0;
+    fi
+    exit 1
+}
+
+link_session_file

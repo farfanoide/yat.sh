@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+_print_session_name() {
+    local session=$1
+    if tmux has-session -t "$session" 2> /dev/null ; then session="$session $G(running)$RESET" ; fi
+    echo -e "[-] $session"
+}
+
+shopt -s nullglob
+list_sessions(){
+    for file in "${YATSH_DIR}"/sessions/*; do
+        _print_session_name $(basename $file)
+    done
+}
+shopt -u nullglob
+
+list_sessions | column
+
