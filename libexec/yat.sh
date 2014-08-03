@@ -51,7 +51,6 @@ bin_path="$(abs_dirname "$0")"
 for dir in $(_split_path $YATSH_PLUGINS_PATH); do
     if [ -d $dir ]; then
         for plugin_bin in "${dir}"/*/bin; do
-            echo $plugin_bin
             bin_path="${bin_path}:${plugin_bin}"
         done
     fi
@@ -84,6 +83,6 @@ arg=$1; shift
 if _is_command $arg; then
     exec yatsh-$arg $*
 else
-    SESSION=$arg exec yatsh-load
+    exec yatsh-load $arg
 fi
 

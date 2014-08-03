@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+[ $# -lt 1 ] && echo "Not enough arguments" && exit 1
+
+SESSION=$1
+
 . "${YATSH_ROOT}/lib/session_helpers.sh"
 
 TMUX_OLD=$TMUX

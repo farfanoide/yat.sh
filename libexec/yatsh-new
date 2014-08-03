@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
-echo 'not implemented yet'
-echo 'no te olvides de importar global_helpers'
 
-usage(){
-    echo 'help, i need somebody, help!'
-}
-
+echo -e "${R}Not implemented yet. ${RESET}" ; exit 1
 [ "$1" = "--help" ] && usage && exit 0
 
 _new_session_file() {
