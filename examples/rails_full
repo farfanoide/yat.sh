@@ -1,32 +1,20 @@
 # Create new session and name first window 'Editor'
 new_session -n 'Editor'
-
-# our windows
-editor=1; general=2; db=3; server=4; log=5; assets=6;
-
-# setup those windows
-send_line $editor ${EDITOR:-vi}
+send_line 'Editor' ${EDITOR:-vi}
 
 new_window -n 'General'
-split $general -h
-send_line $general.1 'git status -bs'
-send_line $general.2 'bundle exec rails console'
+vsplit 'General'
+send_line 'General'.1 'bundle exec rails console'
+send_line 'General'.2 'git status -bs'
 
 new_window -n 'DB'
-send_line $db 'bundle exec rails db'
+send_line 'DB' 'bundle exec rails db'
 
 new_window -n 'Server'
-split $server -v -p "20"
-send_line $server.1 'bundle exec rails server'
-send_line $server.2 'bundle exec guard'
+hsplit 'Server' -p "20"
+send_line 'Server'.1 'bundle exec rails server'
 
-new_window -n 'Log'
-send_line $log 'tail -F log/development.log'
-
-new_window -n 'Assets'
-send_line $assets 'cd app/assets'
-
-select_window $editor
+select_window 'Editor'
 
 # -*- mode: sh -*-
 # vi: set ft=sh :

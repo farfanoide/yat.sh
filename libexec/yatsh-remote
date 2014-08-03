@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 [ $# -lt 1  ] && echo "Not enough arguments" && exit 1
+
 . "$YATSH_ROOT/lib/global_helpers.sh"
 
 _extract_server(){
@@ -20,17 +21,23 @@ _remote_session(){
     [ ! -z $remote_session ] && echo $remote_session || echo $session_file
 }
 session_file="${YATSH_DIR}/sessions/$1"
+session_name=$(_remote_session)
 _remote_script(){
+    echo "SESSION=$session_name"
+    echo "if tmux has-session -t $session_name 2> /dev/null ; then"
+    echo "tmux attach-session -t $session_name"
+    echo "else"
     _echo_session_helpers
-    echo "SESSION=$(_remote_session) $(_echo_session_file)"
-    echo "tmux attach-session -t $(_remote_session)"
+    echo "SESSION=$session_name $(_echo_session_file)"
+    echo "tmux attach-session -t $session_name"
+    echo fi
 }
 # echo $(_remote_script) ; exit 1
 
 if _file_exists $session_file; then
     server=$(_extract_server)
     if [ ! -z $server ]; then
-        ssh $server -t -- "tmux attach -t $(_remote_session) || $(_remote_script) "
+        ssh $server -t -- "$(_remote_script)"
     fi
 fi
 

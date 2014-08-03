@@ -1,0 +1,16 @@
+#= AUTHOR: farfanoide (https://github.com/farfanoide)
+#= DESCRIPTION: Basic django setup running a server and an editor
+
+# Create a new session and name the first window 'Editor'
+new_session -n 'Editor'
+send_line 'Editor' "${EDITOR:-vi}"
+
+# Create a new window and name it 'Server'
+new_window -n 'Server'
+# Execute a django server on window 'Server'
+send_line 'Server' 'python manage.py runserver'
+
+select_window 'Editor'
+
+# -*- mode: sh -*-
+# vi: set ft=sh :

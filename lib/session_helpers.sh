@@ -40,7 +40,7 @@ hsplit() {
     tmux split-window -v -t $SESSION:"$@";
 }
 get_window_base_index(){
-    echo $(tmux show-options -g base-index | cut -d ' ' -f 2)
+    echo $(tmux show-options -g base-index | cut -d' ' -f2)
 }
 #}}}
 # Panes: #{{{

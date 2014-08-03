@@ -1,19 +1,15 @@
-# Make an htop window make a regular shell window
+#= AUTHOR: farfanoide (https://github.com/farfanoide)
+#= DESCRIPTION: Basic tmux global session
 
-new_session -n general
+# Create a new session and name the first window 'General'
+new_session -n 'General'
+send_line 'General' 'ls'
 
-# windows:
-general=1; music=2; downloads=3; dotfiles=4;
+new_window -n 'Music'
+send_line 'Music' 'cd ~/Music'
 
-send_line $general 'ls'
+new_window -n 'Downloads'
+send_line 'Downloads' "cd ~/Downloads ; ls"
 
-new_window -n music
-send_line $music musik ; ls ;
-
-new_window -n downloads
-send_line $downloads "cd $DOWN_DIR ; ls"
-
-new_window -n dotfiles
-send_line $dotfiles "cd $SRC_DIR/dotfiles"
 # -*- mode: sh -*-
 # vi: set ft=sh :
