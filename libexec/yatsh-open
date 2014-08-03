@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 
-echo 'not implemented yet'
-echo 'no te olvides de importar global_helpers'
+[ $# -lt 1 ] && echo "Not enough arguments" && exit 1
 
-_open_session_file() {
-    local session_file dir
-    session_file=$(_set_session_file $1)
+. "${YATSH_ROOT}/lib/global_helpers.sh"
 
-    if [ -f $session_file ]; then
-        ${EDITOR:-vi} $session_file
-    else
-        echo -e "${R}Session file not found.$RESET"
-    fi
-}
+session_file="${YATSH_DIR}/sessions/$1"
+
+if  _file_exists $session_file; then
+    ${EDITOR:-vi} $session_file
+else
+    echo -e "${R}Session file not found.$RESET"
+fi

@@ -1,12 +1,9 @@
-
-
 _file_exists() {
     [ -e "$1" -o -h "$1" ]
 }
 
 _set_session_file() {
     local filename=$1
-
     _file_exists $filename && echo "$LOCALS_DIR/$filename" || echo "$GLOBALS_DIR/$filename"
 }
 

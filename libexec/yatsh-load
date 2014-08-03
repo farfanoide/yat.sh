@@ -11,8 +11,8 @@ if ! tmux has-session -t $SESSION 2> /dev/null ; then
     else
         # globally available local sessions next
         if [ -h "${YATSH_DIR}/sessions/$SESSION" ]; then
-            cd $(dirname $(readlink "$LOCALS_DIR/$SESSION"))
-            session_file="$SESSION"
+            cd $(dirname $(readlink "${YATSH_DIR}/sessions/$SESSION"))
+            . "$SESSION"
         else
             [ -f "${YATSH_DIR}/sessions/$SESSION" ] && . "${YATSH_DIR}/sessions/$SESSION"
         fi
