@@ -1,0 +1,13 @@
+#= DESCRIPTION: Basic remote tmux session
+#= SERVER: server
+#= NAME: test
+#= CUSTOM: ssh -p 3434 user@server
+#= LOADER: remote
+
+new_session -n 'General'
+
+send_line 'General' 'ls'
+
+
+# -*- mode: sh -*-
+# vi: set ft=sh :
