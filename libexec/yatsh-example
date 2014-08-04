@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 usage(){
+    echo -e "List ${SCPT_NAME} example sessions with short description."
+    echo
     echo -e "${SCPT_NAME} example [OPTIONS]"
+    echo
     echo -e "Available Options:"
     echo -e "${TAB} -l -- List all examples (default)"
 }

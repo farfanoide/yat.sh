@@ -65,9 +65,9 @@ _width() {
     tput cols
 }
 _portrait() {
-    [ _height > _width ]
+    [ $(_width) < $(_height) ]
 }
 _widescreen() {
-    [ _width > _height ]
+    [ $(_width) > $(_height) ]
 }
 #}}}
