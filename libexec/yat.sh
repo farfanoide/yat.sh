@@ -56,8 +56,8 @@ for dir in $(_split_path $YATSH_PLUGINS_PATH); do
     fi
 done
 export PATH="${bin_path}:${PATH}"
-
 shopt -u nullglob
+
 _usage() {
     echo -e "${G}${SCPT_NAME}${RESET} ==> Yet another Tmux session handler"
     echo
