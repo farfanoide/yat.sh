@@ -6,31 +6,25 @@ usage(){
 [ "$1" = "--help" -o $# -lt 1 ] && usage && exit 0
 . "${YATSH_ROOT}/lib/global_helpers.sh"
 
-while getopts ':l' option; do
+session_name=$1; shift
+while getopts ':le:' option; do
     case "$option" in
-        e)
-            echo set example file;;
-            #     EXAMPLE_FILE=$OPTARG;shift ;;
-        l)
-            LOCAL_SESSION=1; shift ;;
-        :)
-                echo "Option -$OPTARG requires an argument." ; _usage ; exit 1 ;;
-        *)
-            echo "Invalid option" ; usage ; exit 1 ;;
+        e) example_name=$OPTARG ;;
+        l) local_session=true ;;
+        *) echo "Invalid option" ; usage ; exit 1 ;;
     esac
 done
-
-session_name=$1
-
-[ -z $LOCAL_SESSION ] && dir="$YATSH_SESSIONS_DIR" || dir=$(pwd)
-
-session_file="$dir/$session_name"
-session_example=$(_echo_example_file)
+if [ ! "$local_session" ]; then
+    session_file="${YATSH_SESSIONS_DIR}/${session_name}"
+else
+    session_file="$(pwd)/${session_name}"
+fi
+example_session=$(_echo_example_file $example_name)
 
 # EDITOR not explicitly set or uses vim
 if [[ -z $EDITOR || $EDITOR =~ 'vi' ]] ; then
     # create a buffer with dummy content in $TMUXSTART_DIR
-    echo "$session_example" | ${EDITOR:-vi} - "+file $session_file"
+    echo "$example_session" | ${EDITOR:-vi} - "+file $session_file"
 else
-    echo "$session_example" > $session_file && $EDITOR $session_file
+    echo "$example_session" > $session_file && $EDITOR $session_file
 fi

@@ -8,7 +8,8 @@ _set_session_file() {
 }
 
 _echo_example_file() {
-    [ -f "$EXAMPLES_DIR/$1" ] && cat "$EXAMPLES_DIR/$1" || cat "$EXAMPLES_DIR/main"
+    cat "${YATSH_ROOT}/examples/main"
+    # [ -f "$EXAMPLES_DIR/$1" ] && cat "$EXAMPLES_DIR/$1" || cat "$EXAMPLES_DIR/main"
 }
 
 _check_for_tmux() {
