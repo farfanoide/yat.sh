@@ -1,20 +1,36 @@
 #!/usr/bin/env bash
 
-echo -e "${R}Not implemented yet. ${RESET}" ; exit 1
-[ "$1" = "--help" ] && usage && exit 0
-
-_new_session_file() {
-    local session_file session_example dir
-    if [ -z $LOCAL_SESSION ]; then dir="$SESSIONS_DIR/globals"; else dir=$PWD; fi
-    session_file="$dir/$NEW_SESSION_FILE"
-
-    session_example=$(_echo_example_file $EXAMPLE_FILE)
-
-    # EDITOR not explicitly set or uses vim
-    if [[ -z $EDITOR || $EDITOR =~ 'vi' ]] ; then
-        # create a buffer with dummy content in $TMUXSTART_DIR
-        echo "$session_example" | ${EDITOR:-vi} - "+file $session_file"
-    else
-        echo "$session_example" > $session_file && $EDITOR $session_file
-    fi
+usage(){
+    echo -e "${SCPT_NAME} new SESSION [-l] [-e EXAMPLE]"
 }
+[ "$1" = "--help" -o $# -lt 1 ] && usage && exit 0
+. "${YATSH_ROOT}/lib/global_helpers.sh"
+
+while getopts ':l' option; do
+    case "$option" in
+        e)
+            echo set example file;;
+            #     EXAMPLE_FILE=$OPTARG;shift ;;
+        l)
+            LOCAL_SESSION=1; shift ;;
+        :)
+                echo "Option -$OPTARG requires an argument." ; _usage ; exit 1 ;;
+        *)
+            echo "Invalid option" ; usage ; exit 1 ;;
+    esac
+done
+
+session_name=$1
+
+[ -z $LOCAL_SESSION ] && dir="$YATSH_SESSIONS_DIR" || dir=$(pwd)
+
+session_file="$dir/$session_name"
+session_example=$(_echo_example_file)
+
+# EDITOR not explicitly set or uses vim
+if [[ -z $EDITOR || $EDITOR =~ 'vi' ]] ; then
+    # create a buffer with dummy content in $TMUXSTART_DIR
+    echo "$session_example" | ${EDITOR:-vi} - "+file $session_file"
+else
+    echo "$session_example" > $session_file && $EDITOR $session_file
+fi

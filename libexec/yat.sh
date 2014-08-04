@@ -21,10 +21,10 @@ abs_dirname() {
 }
 
 
-[ -z "$SCPT_NAME" ]     && export SCPT_NAME=$(basename $0)
-[ -z "$YATSH_VERSION" ] && export VERSION='[ 0.1.0-alpha ]'
-[ -z "$YATSH_ROOT" ]    && export YATSH_ROOT="$(abs_dirname $0)/.."
-[ -z "$YATSH_DIR" ]     && export YATSH_DIR="$HOME/.$SCPT_NAME"
+[ -z "$SCPT_NAME" ]          && export SCPT_NAME=$(basename $0)
+[ -z "$YATSH_VERSION" ]      && export VERSION='[ 0.1.0-alpha ]'
+[ -z "$YATSH_ROOT" ]         && export YATSH_ROOT="$(abs_dirname $0)/.."
+[ -z "$YATSH_DIR" ]          && export YATSH_DIR="$HOME/.$SCPT_NAME"
 [ -z "$YATSH_SESSIONS_DIR" ] && export YATSH_SESSIONS_DIR="${YATSH_DIR}/sessions"
 
 #= Directories:

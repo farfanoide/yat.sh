@@ -3,7 +3,7 @@
 _print_session_name() {
     local session=$1
     if tmux has-session -t "$session" 2> /dev/null ; then session="$session $G(running)$RESET" ; fi
-    echo -e "[-] $session"
+    echo -e "- $session"
 }
 
 shopt -s nullglob
@@ -14,5 +14,6 @@ list_sessions(){
 }
 shopt -u nullglob
 
+# list_sessions
 list_sessions | column
 
