@@ -85,7 +85,7 @@ into your shell config file (for zsh it would be ~/.zshr, for bash ~/.bashrc
         or ~/.bash_profile)
 
 ```bash
-    export PATH="$HOME/.rbenv/bin:$PATH"'
+    export PATH="$HOME/.yat.sh/bin:$PATH"'
 ```
 
 - [ ] TODO
