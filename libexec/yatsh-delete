@@ -7,10 +7,10 @@
 filename=$1
 
 if _file_exists "${YATSH_DIR}/sessions/${filename}"; then
-    echo -e "${R}Are you sure you want to remove \"$filename\"? [y/N]$RESET"
+    echo -e "${Y}[WARNING] Are you sure you want to remove \"$filename\"? [y/N]$RESET"
     read confirm
     [[ $confirm =~ 'y' ]] && rm -v "${YATSH_DIR}/sessions/${filename}" && exit 0
 else
-    echo -e "Session file for \"$filename\" not found."
+    echo -e "${R}[ERROR] Session file for \"$filename\" not found.${RESET}"
 fi
 exit 1

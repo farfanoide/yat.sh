@@ -9,5 +9,5 @@ session_file="${YATSH_DIR}/sessions/$1"
 if  _file_exists $session_file; then
     ${EDITOR:-vi} $session_file
 else
-    echo -e "${R}Session file not found.$RESET"
+    echo -e "${R}[ERROR] Session file not found.$RESET"
 fi

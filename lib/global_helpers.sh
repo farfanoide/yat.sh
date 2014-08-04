@@ -1,5 +1,5 @@
 _file_exists() {
-    [ -e "$1" -o -h "$1" ]
+    [ -f "$1" -o -h "$1" ]
 }
 
 _set_session_file() {
@@ -8,8 +8,9 @@ _set_session_file() {
 }
 
 _echo_example_file() {
-    cat "${YATSH_ROOT}/examples/main"
-    # [ -f "$EXAMPLES_DIR/$1" ] && cat "$EXAMPLES_DIR/$1" || cat "$EXAMPLES_DIR/main"
+    local example="${YATSH_ROOT}/examples/$1"
+    local default="${YATSH_ROOT}/examples/main"
+    if _file_exists $example; then  cat $example; else cat $default; fi
 }
 
 _check_for_tmux() {
