@@ -66,14 +66,14 @@ _usage() {
     echo -e "Manage and launch named tmux sessions."
     echo
     echo -e "Options:"
+    echo -e "${TAB}${Y}delete  ${RESET} -- Delete session file."
     echo -e "${TAB}${Y}help    ${RESET} -- Show help for a specific command."
-    echo -e "${TAB}${Y}version ${RESET} -- Print ${SCPT_NAME} version number."
     echo -e "${TAB}${Y}link    ${RESET} -- Link local session file to global directory."
     echo -e "${TAB}${Y}list    ${RESET} -- List available session files and other running sessions."
+    echo -e "${TAB}${Y}load    ${RESET} -- Launch/load session. ${G}(default)${RESET}"
     echo -e "${TAB}${Y}new     ${RESET} -- Create new [local] session file [from example]."
     echo -e "${TAB}${Y}open    ${RESET} -- Open [local] session file for editing."
-    echo -e "${TAB}${Y}delete  ${RESET} -- Delete session file."
-    echo -e "${TAB}${Y}load    ${RESET} -- Launch/load session. ${G}(default)${RESET}"
+    echo -e "${TAB}${Y}version ${RESET} -- Print ${SCPT_NAME} version number."
     # echo -e "${TAB}remote  --${Y} Launch/load remote session. ${G}(default)"
 }
 [ $# -lt 1 ] && _usage && exit 1
