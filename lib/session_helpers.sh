@@ -3,9 +3,9 @@
 # Sessions: #{{{
 new_session() {
     # Set default path based on $path variable if defined
-    [ "$path" ] && cd "$path"
-    tmux new-session -d -s $SESSION "$@"
-    [ "$path" ] && set_path "$path"
+    [ "$path" ] && cd "$path";
+    tmux new-session -d -s $SESSION "$@";
+    [ "$path" ] && set_path "$path";
 }
 set_env() {
     tmux set-environment -t $SESSION "$@";
@@ -40,7 +40,7 @@ hsplit() {
     tmux split-window -v -t $SESSION:"$@";
 }
 get_window_base_index(){
-    echo $(tmux show-options -g base-index | cut -d' ' -f2)
+    echo $(tmux show-options -g base-index | cut -d' ' -f2);
 }
 #}}}
 # Panes: #{{{
@@ -59,15 +59,15 @@ swap() {
 #}}}
 # Non tmux helpers #{{{
 _height() {
-    tput lines
+    tput lines;
 }
 _width() {
-    tput cols
+    tput cols;
 }
 _portrait() {
-    [ $(_width) < $(_height) ]
+    [ $(_width) < $(_height) ];
 }
 _widescreen() {
-    [ $(_width) > $(_height) ]
+    [ $(_width) > $(_height) ];
 }
 #}}}

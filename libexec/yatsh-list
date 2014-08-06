@@ -1,19 +1,26 @@
 #!/usr/bin/env bash
 
+
+usage() {
+    echo -e "List ${SCPT_NAME} session files. "
+    echo -e "Usage: ${SCPT_NAME} list|ls [OPTIONS]"
+}
+
+[ "$1" = '--help' ] && usage && exit 0
+
 _print_session_name() {
     local session=$1
     if tmux has-session -t "$session" 2> /dev/null ; then session="$session $G(running)$RESET" ; fi
-    echo -e "- $session"
+    echo -e "[-] $session"
 }
 
-shopt -s nullglob
-list_sessions(){
+_list_sessions(){
+    shopt -s nullglob
     for file in "${YATSH_DIR}"/sessions/*; do
         _print_session_name $(basename $file)
     done
+    shopt -u nullglob
 }
-shopt -u nullglob
 
-# list_sessions
-list_sessions | column
+_list_sessions | column
 

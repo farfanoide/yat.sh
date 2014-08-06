@@ -1,25 +1,20 @@
 #!/usr/bin/env bash
 
-usage(){
-    echo -e "List ${SCPT_NAME} example sessions with short description."
-    echo
-    echo -e "${SCPT_NAME} example [OPTIONS]"
-    echo
-    echo -e "Available Options:"
-    echo -e "${TAB} -l -- List all examples (default)"
+usage() {
+    echo -e "List ${SCPT_NAME} example sessions [with short description]."
+    echo -e "Usage: ${SCPT_NAME} example"
 }
-[ "$1" = "--help" ] && usage && exit 0
-. "${YATSH_ROOT}/lib/global_helpers.sh"
 
-_get_description(){
-    local file=$1
-    cat $file | grep -i '#= DESCRIPTION:' | cut -d':' -f2
-}
-_list_examples(){
+[ "$1" = "--help" ] && usage && exit 0
+
+source "${YATSH_ROOT}/lib/global_helpers.sh"
+
+_list_examples() {
     shopt -s nullglob
     for example in "$YATSH_ROOT/examples"/*; do
-        echo -e "${Y}$(basename $example)${RESET} # -- $(_get_description $example)"
+        echo -e "${Y}$(basename $example)${RESET} # -- $(_extract 'DESCRIPTION' $example)"
     done
     shopt -u nullglob
 }
+
 _list_examples | column -t -s'#'

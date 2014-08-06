@@ -8,7 +8,7 @@ goals.
 ![Screenshot](http://cl.ly/image/0S2l1J1n2v23/yatsh.gif)
 
 ## Disclaimer
-    Still at alpha stages, it shouldn eat your kittens... but i can't promise anything.
+    Still at alpha stages, it shouldn't eat your kittens... but i can't promise anything.
 
 
 ## Diffrences with other options:

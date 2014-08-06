@@ -4,7 +4,7 @@
 
 SESSION=$1
 
-. "${YATSH_ROOT}/lib/session_helpers.sh"
+source "${YATSH_ROOT}/lib/session_helpers.sh"
 
 TMUX_OLD=$TMUX
 TMUX=

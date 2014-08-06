@@ -9,7 +9,7 @@ _echo_example_file() {
 }
 
 _check_for_tmux() {
-    type tmux 2> /dev/null || echo -e "${R}tmux not found in your PATH${RESET}"
+    [ -z "$(command -v tmux)" ] && echo -e "${R}tmux not found in your PATH${RESET}"
 }
 
 _capitalize() {
@@ -41,3 +41,8 @@ remove_dir_from_path(){
     echo $(echo $PATH | sed "s/$(escape_slashes $1)://g")
 }
 
+_extract() {
+    local keyword=$1; shift
+    local file=$1   ; shift
+    cat $file | grep -i "#= ${keyword}:" | cut -d':' -f2
+}
