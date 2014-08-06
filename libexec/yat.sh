@@ -26,6 +26,7 @@ abs_dirname() {
 [ -z "$YATSH_ROOT" ]         && export YATSH_ROOT="$(abs_dirname $0)/.."
 [ -z "$YATSH_DIR" ]          && export YATSH_DIR="$HOME/.$SCPT_NAME"
 [ -z "$YATSH_SESSIONS_DIR" ] && export YATSH_SESSIONS_DIR="${YATSH_DIR}/sessions"
+[ ! -d $YATSH_DIR ]          && exec yatsh-setup
 
 #= Directories:
 if [ -z $YATSH_PLUGINS_PATH ]; then
@@ -35,7 +36,7 @@ if [ -z $YATSH_PLUGINS_PATH ]; then
     personal_pd="${XDG_DATA_HOME:-$HOME/.local/share}/${SCPT_NAME}/plugins"
     export YATSH_PLUGINS_PATH="${personal_pd}:${global_manual_pd}:${global_pd}"
 fi
-export BUILTIN_PLUGINS="delete help link list load new open remote version"
+export BUILTIN_PLUGINS="delete help link list load new open remote setup version"
 
 . "$YATSH_ROOT/lib/global_helpers.sh"
 #= Colors and characters:
@@ -66,14 +67,14 @@ _usage() {
     echo -e "Manage and launch named tmux sessions."
     echo
     echo -e "Options:"
+    echo -e "${TAB}${Y}delete  ${RESET} -- Delete session file."
     echo -e "${TAB}${Y}help    ${RESET} -- Show help for a specific command."
-    echo -e "${TAB}${Y}version ${RESET} -- Print ${SCPT_NAME} version number."
     echo -e "${TAB}${Y}link    ${RESET} -- Link local session file to global directory."
     echo -e "${TAB}${Y}list    ${RESET} -- List available session files and other running sessions."
+    echo -e "${TAB}${Y}load    ${RESET} -- Launch/load session. ${G}(default)${RESET}"
     echo -e "${TAB}${Y}new     ${RESET} -- Create new [local] session file [from example]."
     echo -e "${TAB}${Y}open    ${RESET} -- Open [local] session file for editing."
-    echo -e "${TAB}${Y}delete  ${RESET} -- Delete session file."
-    echo -e "${TAB}${Y}load    ${RESET} -- Launch/load session. ${G}(default)${RESET}"
+    echo -e "${TAB}${Y}version ${RESET} -- Print ${SCPT_NAME} version number."
     # echo -e "${TAB}remote  --${Y} Launch/load remote session. ${G}(default)"
 }
 [ $# -lt 1 ] && _usage && exit 1
