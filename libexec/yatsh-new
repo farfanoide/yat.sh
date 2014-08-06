@@ -2,9 +2,15 @@
 
 usage(){
     echo -e "${SCPT_NAME} new SESSION [-l] [-e EXAMPLE]"
+    echo
+    echo -e 'Available options:'
+    echo -e "${TAB}${Y}-l         ${RESET} -- Create session file in current directory."
+    echo -e "${TAB}${Y}-e EXAMPLE ${RESET} -- Use example session file."
 }
+
 [ "$1" = "--help" -o $# -lt 1 ] && usage && exit 0
-. "${YATSH_ROOT}/lib/global_helpers.sh"
+
+source "${YATSH_ROOT}/lib/global_helpers.sh"
 
 session_name=$1; shift
 while getopts ':le:' option; do

@@ -24,12 +24,12 @@ however, for the most part, you're only gonna use a few of those sessions at a
 time.
 
 Yat.sh tries to solve this problem by allowing you to have different types of
-sessions, which we will be explain shortly.
+sessions, which we will explain shortly.
 
 Sessions:
 ---------
 `Sessions` are, for all intents and purposes of our project, nothing more than
-scripts with certain commands to startup a tmux session and set it up.
+scripts with certain commands to create a tmux session and set it up.
 
 The simplest example could be something like:
 
@@ -40,34 +40,35 @@ send_line 'General' 'ls'
 ```
 
 This session file would create a tmux session containing a window named
-'General' and it'd execute ls on it. More examples can be found in the examples
+'General' and it would execute `ls` on it. More examples can be found in the examples
 folder.
 
 Session types:
 --------------
 
-Out of the box Yat.sh has support for 3 types of sessions: "Local", "Global", "Remote".
+Out of the box Yat.sh has support for 3 types of sessions: "Local", "Global" and "Remote".
 
     Local Sessions:
 
-    These care about the directory from which they're invoked, since all their commands
-    are relative to it. This might seem irrelevant, but in fact it gives us a lot
-    of flexibility.  We can now share a complete tmux session with our project, or
-    simply save it under version control and use it whenever we want to work back
-    on it, without having it cluttering our sessions list every day.
+    These care about the directory from which they're invoked, since all their
+    commands are relative to it. This might seem irrelevant, but in fact it
+    gives us a lot of flexibility.  We can now share a complete tmux session
+    with our project, or simply save it under version control and use it
+    whenever we want to work back on it, without having it cluttering our
+    sessions list every day.
 
     Global Sessions:
 
-    Globals are... 'just sessions' in the sense that we're
-    accustomed with tmuxinator.  A global session would, for example `cd` into some
-    directory before executing a command.
+    Globals are... 'just sessions' in the sense that we're accustomed with
+    tmuxinator.  A global session would, for example `cd` into some directory
+    before executing a command.
 
     Remote Sessions:
 
-    Why can't we manage tmux sessions in our servers the same way we do on our own
-    computers?. Yat.sh gives us the ability to startup and attach to tmux sessions
-    running on other hosts in a simple and transparent way.
-    Currently remote connections are done via ssh, but mosh support is on the way.
+    Why can't we manage tmux sessions in our servers the same way we do on our
+    own computers?. Yat.sh gives us the ability to startup and attach to tmux
+    sessions running on other hosts in a simple and transparent way.  Currently
+    remote connections are done via ssh, but mosh support is on the way.
 
 ## Installation:
 Download this repo and make sure `bin/yat.sh` is in your $PATH
@@ -79,13 +80,21 @@ Download this repo and make sure `bin/yat.sh` is in your $PATH
 ```
 
 2. Add `~/.yat.sh/bin` to your `$PATH`.  You can do it by adding the next line
-into your shell config file (for zsh it would be ~/.zshr, for bash ~/.bashrc or ~/.bash_profile).
+   into your shell config file (for zsh it would be ~/.zshr, for bash ~/.bashrc
+   or ~/.bash_profile).
 
 ```bash
     export PATH="$HOME/.yat.sh/bin:$PATH"
 ```
 If you just want to quickly test it, an alias would also work.
 
+
+## Usage:
+
+Yat.sh itself is just a dispatcher, this means all functionality is based on
+subcommands or plugins. The first argument received by yat.sh will try to be
+executed, if no such command is found, the `load` command will treat it as a
+session name.
 
 - [ ] TODO
 ## Creating session files:
