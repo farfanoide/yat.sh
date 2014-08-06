@@ -26,6 +26,7 @@ abs_dirname() {
 [ -z "$YATSH_ROOT" ]         && export YATSH_ROOT="$(abs_dirname $0)/.."
 [ -z "$YATSH_DIR" ]          && export YATSH_DIR="$HOME/.$SCPT_NAME"
 [ -z "$YATSH_SESSIONS_DIR" ] && export YATSH_SESSIONS_DIR="${YATSH_DIR}/sessions"
+[ ! -d $YATSH_DIR ]          && exec yatsh-setup
 
 #= Directories:
 if [ -z $YATSH_PLUGINS_PATH ]; then
@@ -35,7 +36,7 @@ if [ -z $YATSH_PLUGINS_PATH ]; then
     personal_pd="${XDG_DATA_HOME:-$HOME/.local/share}/${SCPT_NAME}/plugins"
     export YATSH_PLUGINS_PATH="${personal_pd}:${global_manual_pd}:${global_pd}"
 fi
-export BUILTIN_PLUGINS="delete help link list load new open remote version"
+export BUILTIN_PLUGINS="delete help link list load new open remote setup version"
 
 . "$YATSH_ROOT/lib/global_helpers.sh"
 #= Colors and characters:
