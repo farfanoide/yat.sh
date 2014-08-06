@@ -1,32 +1,30 @@
 # yat.sh (Yet another Tmux session handler)
 
 `Yat.sh` is an attempt at making tmux session management easy and portable, it
-was once based on Trey Hunner's tmuxstart[1], but has been rethought (and
-        rewritten) for my own requirements, with some consideration put into
-portability and extensibility.
+was once based on Trey Hunner's [tmuxstart][1], but has been rethought (and
+rewritten) for my own requirements, with portability and extensibility as main
+goals.
 
 ![Screenshot](http://cl.ly/image/0S2l1J1n2v23/yatsh.gif)
+
 ## Disclaimer
-    This is very much alpha software!
+    Still at alpha stages, it shouldn eat your kittens... but i can't promise anything.
+
 
 ## Diffrences with other options:
 
-Yat.sh is basically a set of shell scripts
-meaning the only dependency for it to work is tmux itself.
+Yat.sh is basically a set of shell scripts meaning the only dependency for it
+to work is tmux itself. You don't need ruby or any gem, just install it into
+your path and you're good to go.
 
-You don't need ruby or any gem, just install it into your path and you're good
-to go.
-
-Yat.sh introduces some concepts that need to be explained, like session types.
-Alternatives like tmuxinator[2] and teamocil[3] only let you have sessions in
-one directory, which is great when you have a reduced number of sessions, but
-as you work on new projects your list rapidly grows, however, for the most
-part, you're only gonna use a few of those sessions at a time.
+Traditionally, alternatives like [tmuxinator][2] and [teamocil][3] only let you
+have session files in one directory, which is great when you have a reduced
+number of them, but as you work on new projects your list rapidly grows,
+however, for the most part, you're only gonna use a few of those sessions at a
+time.
 
 Yat.sh tries to solve this problem by allowing you to have different types of
-sessions, which will be explained next.
-
-## Sessions and session types:
+sessions, which we will be explain shortly.
 
 Sessions:
 ---------
@@ -52,17 +50,17 @@ Out of the box Yat.sh has support for 3 types of sessions: "Local", "Global", "R
 
     Local Sessions:
 
-    These care about the directory from which they're invoked, all their commands
+    These care about the directory from which they're invoked, since all their commands
     are relative to it. This might seem irrelevant, but in fact it gives us a lot
     of flexibility.  We can now share a complete tmux session with our project, or
     simply save it under version control and use it whenever we want to work back
-    on it, without having it clutter our sessions list every day.
+    on it, without having it cluttering our sessions list every day.
 
     Global Sessions:
 
     Globals are... 'just sessions' in the sense that we're
     accustomed with tmuxinator.  A global session would, for example `cd` into some
-    directory before executing some command.
+    directory before executing a command.
 
     Remote Sessions:
 
@@ -81,12 +79,13 @@ Download this repo and make sure `bin/yat.sh` is in your $PATH
 ```
 
 2. Add `~/.yat.sh/bin` to your `$PATH`.  You can do it by adding the next line
-into your shell config file (for zsh it would be ~/.zshr, for bash ~/.bashrc
-        or ~/.bash_profile)
+into your shell config file (for zsh it would be ~/.zshr, for bash ~/.bashrc or ~/.bash_profile).
 
 ```bash
     export PATH="$HOME/.yat.sh/bin:$PATH"
 ```
+If you just want to quickly test it, an alias would also work.
+
 
 - [ ] TODO
 ## Creating session files:
@@ -94,6 +93,8 @@ into your shell config file (for zsh it would be ~/.zshr, for bash ~/.bashrc
 ## Usage:
 - [ ] TODO
 ## Completions:
+- [ ] TODO
+## Plugins:
 - [ ] TODO
 ## Test:
 - [ ] TODO
