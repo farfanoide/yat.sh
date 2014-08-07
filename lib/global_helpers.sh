@@ -9,7 +9,7 @@ _echo_example_file() {
 }
 
 _check_for_tmux() {
-    [ -z "$(command -v tmux)" ] && echo -e "${R}tmux not found in your PATH${RESET}"
+    [ -z "$(command -v tmux)" ] && echo -e "${R}tmux not found in your PATH${RESET}" && return 1
 }
 
 _capitalize() {
