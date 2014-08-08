@@ -9,6 +9,4 @@ if [ "$YATSH_ROOT" != "${YATSH_TEST_DIR}/root" ]; then
     export HOME="${YATSH_TEST_DIR}/home"
 fi
 
-teardown() {
-    rm -rf "$YATSH_TEST_DIR"
-}
+teardown() { rm -rf "$YATSH_TEST_DIR" ; }

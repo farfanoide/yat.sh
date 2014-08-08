@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 
-[ $# -lt 1 ] && echo "Not enough arguments" && exit 1
+usage(){
+    echo -e "Start/Attach tmux session."
+    echo -e "Usage: ${SCPT_NAME} SESSION"
+}
+
+[ "$1" = "--help" -o $# -lt 1 ] && usage && exit 0
 
 SESSION=$1
 
-. "${YATSH_ROOT}/lib/session_helpers.sh"
+source "${YATSH_ROOT}/lib/global_helpers.sh"
+source "${YATSH_ROOT}/lib/session_helpers.sh"
+
+if ! _check_for_tmux; then
+ exit 1
+fi
 
 TMUX_OLD=$TMUX
 TMUX=

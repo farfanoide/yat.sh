@@ -20,15 +20,16 @@ abs_dirname() {
     cd "$cwd"
 }
 
-
+#= Info:
 [ -z "$SCPT_NAME" ]          && export SCPT_NAME=$(basename $0)
 [ -z "$YATSH_VERSION" ]      && export VERSION='[ 0.1.0-alpha ]'
+
+#= Directories:
 [ -z "$YATSH_ROOT" ]         && export YATSH_ROOT="$(abs_dirname $0)/.."
 [ -z "$YATSH_DIR" ]          && export YATSH_DIR="$HOME/.$SCPT_NAME"
 [ -z "$YATSH_SESSIONS_DIR" ] && export YATSH_SESSIONS_DIR="${YATSH_DIR}/sessions"
 [ ! -d $YATSH_DIR ]          && exec yatsh-setup
 
-#= Directories:
 if [ -z $YATSH_PLUGINS_PATH ]; then
     # 'pd' references 'Plugins Directory'
     global_pd="/usr/share/${SCPT_NAME}/plugins"
@@ -36,9 +37,8 @@ if [ -z $YATSH_PLUGINS_PATH ]; then
     personal_pd="${XDG_DATA_HOME:-$HOME/.local/share}/${SCPT_NAME}/plugins"
     export YATSH_PLUGINS_PATH="${personal_pd}:${global_manual_pd}:${global_pd}"
 fi
-export BUILTIN_PLUGINS="delete help link list load new open remote setup version"
 
-. "$YATSH_ROOT/lib/global_helpers.sh"
+source "${YATSH_ROOT}/lib/global_helpers.sh"
 #= Colors and characters:
 export TAB='    '
 export RESET='\033[0m'
@@ -47,17 +47,6 @@ export Y='\033[0;33m'
 export R='\033[0;31m'
 
 
-shopt -s nullglob
-bin_path="$(abs_dirname "$0")"
-for dir in $(_split_path $YATSH_PLUGINS_PATH); do
-    if [ -d $dir ]; then
-        for plugin_bin in "${dir}"/*/bin; do
-            bin_path="${bin_path}:${plugin_bin}"
-        done
-    fi
-done
-export PATH="${bin_path}:${PATH}"
-shopt -u nullglob
 
 _usage() {
     echo -e "${G}${SCPT_NAME}${RESET} ==> Yet another Tmux session handler"
@@ -77,7 +66,20 @@ _usage() {
     echo -e "${TAB}${Y}version ${RESET} -- Print ${SCPT_NAME} version number."
     # echo -e "${TAB}remote  --${Y} Launch/load remote session. ${G}(default)"
 }
-[ $# -lt 1 ] && _usage && exit 1
+[ "$1" = '--help' -o $# -lt 1 ] && _usage && exit 1
+
+# Add all relevant directories to PATH so we can find plugins and custom commands
+shopt -s nullglob
+bin_path="$(abs_dirname "$0")"
+for dir in $(_split_path $YATSH_PLUGINS_PATH); do
+    if [ -d $dir ]; then
+        for plugin_bin in "${dir}"/*/bin; do
+            bin_path="${bin_path}:${plugin_bin}"
+        done
+    fi
+done
+export PATH="${bin_path}:${PATH}"
+shopt -u nullglob
 
 arg=$1; shift
 

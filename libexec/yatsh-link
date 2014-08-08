@@ -4,7 +4,7 @@ usage() {
     echo 'link help'
 }
 
-[ "$1" = '--help' -o $# -lt 1 ] && usage || echo 'not implemented yet'
+[ "$1" = '--help' -o $# -lt 1 ] && usage && exit 0
 
 source=$1 ; shift
 link_session_file() {
