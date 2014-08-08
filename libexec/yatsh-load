@@ -12,9 +12,6 @@ SESSION=$1
 source "${YATSH_ROOT}/lib/global_helpers.sh"
 source "${YATSH_ROOT}/lib/session_helpers.sh"
 
-if ! _check_for_tmux; then
- exit 1
-fi
 
 TMUX_OLD=$TMUX
 TMUX=
