@@ -2,7 +2,7 @@
 
 # this plugin should print help for all installed plugins
 
-[ ! $# -gt 0 ] && _usage && return 0
+[ ! $# -gt 0 ] && exec yat.sh --help && return 0
 
 COMMAND=$(command -v "yatsh-${1}")
 
