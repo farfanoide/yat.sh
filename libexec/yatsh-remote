@@ -36,7 +36,6 @@ _remote_script(){
     echo "tmux attach-session -t ${session_name}"
     echo fi
 }
-# echo $(_remote_script) ; exit 1
 
 if _file_exists $session_file; then
     server=$(_extract 'SERVER' $session_file)

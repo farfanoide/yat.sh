@@ -28,7 +28,7 @@ _split_path(){
 }
 
 escape_slashes(){
-    echo $* | sed 's/\//\\\//g'
+    echo $* | perl -pe 's/\//\\\//g'
 }
 
 bin_path(){
@@ -38,7 +38,7 @@ bin_path(){
 }
 
 remove_dir_from_path(){
-    echo $(echo $PATH | sed "s/$(escape_slashes $1)://g")
+    echo $(echo $PATH | perl -pe "s/$(escape_slashes $1)://g")
 }
 
 _extract() {

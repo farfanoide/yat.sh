@@ -83,6 +83,7 @@ shopt -u nullglob
 
 arg=$1; shift
 
+# TODO: add custom loader option for plugins
 if _is_command $arg; then
     exec yatsh-$arg $*
 else
