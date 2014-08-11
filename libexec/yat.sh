@@ -28,8 +28,10 @@ abs_dirname() {
 [ -z "$YATSH_ROOT" ]         && export YATSH_ROOT="$(abs_dirname $0)/.."
 [ -z "$YATSH_DIR" ]          && export YATSH_DIR="$HOME/.$SCPT_NAME"
 [ -z "$YATSH_SESSIONS_DIR" ] && export YATSH_SESSIONS_DIR="${YATSH_DIR}/sessions"
+[ -z "$YATSH_SESSIONS_PATH" ]&& export YATSH_SESSIONS_PATH="$(pwd):$YATSH_DIR/sessions:$YATSH_ROOT/sessions"
 [ ! -d $YATSH_DIR ]          && exec yatsh-setup
 
+#= Plugins path:
 if [ -z $YATSH_PLUGINS_PATH ]; then
     # 'pd' references 'Plugins Directory'
     global_pd="/usr/share/${SCPT_NAME}/plugins"
@@ -39,6 +41,7 @@ if [ -z $YATSH_PLUGINS_PATH ]; then
 fi
 
 source "${YATSH_ROOT}/lib/global_helpers.sh"
+
 #= Colors and characters:
 export TAB='    '
 export RESET='\033[0m'
@@ -63,8 +66,8 @@ _usage() {
     echo -e "${TAB}${Y}load    ${RESET} -- Launch/load session. ${G}(default)${RESET}"
     echo -e "${TAB}${Y}new     ${RESET} -- Create new [local] session file [from example]."
     echo -e "${TAB}${Y}open    ${RESET} -- Open [local] session file for editing."
+    echo -e "${TAB}${Y}remote  ${RESET} -- Launch/load remote session."
     echo -e "${TAB}${Y}version ${RESET} -- Print ${SCPT_NAME} version number."
-    # echo -e "${TAB}remote  --${Y} Launch/load remote session. ${G}(default)"
 }
 [ "$1" = '--help' -o $# -lt 1 ] && _usage && exit 1
 
@@ -83,7 +86,6 @@ shopt -u nullglob
 
 arg=$1; shift
 
-# TODO: add custom loader option for plugins
 if _is_command $arg; then
     exec yatsh-$arg $*
 else

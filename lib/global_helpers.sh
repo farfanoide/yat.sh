@@ -44,5 +44,17 @@ remove_dir_from_path(){
 _extract() {
     local keyword=$1; shift
     local file=$1   ; shift
-    cat $file | grep -i "#= ${keyword}:" | cut -d':' -f2
+    cat $file | grep -i "#= ${keyword}:" | cut -d':' -f2 | tr -d ' '
+}
+
+_find_session_file() {
+    local name=$1
+    shopt -s nullglob
+    for dir in $(_split_path $YATSH_SESSIONS_PATH); do
+        for file in "${dir}"/*; do
+            [ $(basename $file) = $name ] && echo $file && return 0
+        done
+    done
+    shopt -u nullglob
+    return 1
 }
