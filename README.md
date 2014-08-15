@@ -1,4 +1,5 @@
-# yat.sh (Yet another Tmux session handler)
+# yat.sh
+    (Yet another Tmux session handler)
 
 `Yat.sh` is an attempt at making tmux session management easy and portable, it
 was once based on Trey Hunner's [tmuxstart][1], but has been rethought (and
@@ -95,6 +96,99 @@ Yat.sh itself is just a dispatcher, this means all functionality is based on
 subcommands or plugins. The first argument received by yat.sh will try to be
 executed, if no such command is found, the `load` command will treat it as a
 session name.
+
+### Commands:
+
+#### Delete
+Delete a session file if exists.
+
+```bash
+   $ yat.sh delete main
+```
+
+#### Example
+List available example session files with a short description if available.
+Descriptions can be added via custom data attributes.
+
+```bash
+    $ yat.sh example
+```
+
+#### Help
+Print usage for yat.sh itself or any other sucommand
+
+```bash
+    $ yat.sh help new
+```
+
+#### Link
+Link local session file to global directory making it available from anywhere.
+
+```bash
+    $ yat.sh link session_file
+```
+#### List
+List available session files and optionally other running sessions. (alias = ls)
+
+```bash
+    $ yat.sh list
+```
+
+#### Load
+Start and setup a tmux session from a session file or attach to one already
+running. If no session file is found an empty tmux session will be created and
+attached to.
+
+```bash
+    $ yat.sh load session_file
+```
+
+#### New
+Create a session file optionally from a predefined example. If `-l` flag is
+given, the new file will be saved under the current directory oppsed to default
+behaviour which would be to save it under `$YATSH_SESSIONS_DIR`
+
+```bash
+    $ yat.sh new session_name -e example_name
+```
+
+#### Open
+Open a session file for editing with your `$EDITOR`
+
+```bash
+    $ yat.sh open session_file
+```
+
+#### Remote
+
+Similar to `load` except on remote servers. `yat.sh remote` loads regular
+session files but parses some custom data attributes, namely server and remote
+session name. An `ssh` connection will try to be established to said server,
+from then on, everything works just like with `yat.sh load` but on the remote server.
+
+Example remote session:
+($YATSH_SESSIONS_DIR/remote_session)
+```bash
+
+#= SERVER: root@myserver
+
+#= NAME: remote_session_name
+
+new_session -n 'General'
+
+send_line 'General' 'ls'
+```
+
+```
+    $ yat.sh remote remote_session
+```
+
+In the previous example we are creating a session named 'remote_session_name'
+on 'myserver' as the user 'root'. Note that connections are done via ssh which
+means that you can use aliases from your `~/.ssh/config`
+
+#### Version
+Print yat.sh version number.
 
 - [ ] TODO
 ## Creating session files:
