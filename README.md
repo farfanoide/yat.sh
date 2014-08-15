@@ -190,18 +190,23 @@ means that you can use aliases from your `~/.ssh/config`
 #### Version
 Print yat.sh version number.
 
+## Custom Data Attributes:
+
+This is a simple way of entering extra information in session files which will
+not be executed unless specifically parsed and used by a command. Basically
+these data attributes are bash comments that follow a simple pattern:
+
+```bash
+#= KEY: everything after the semicolon is used as value
+```
+
+- [ ] TODO ## Creating session files:
+- [ ] TODO ## Usage:
+- [ ] TODO ## Completions:
+- [ ] TODO ## Plugins:
+- [ ] TODO ## Test:
 - [ ] TODO
-## Creating session files:
-- [ ] TODO
-## Usage:
-- [ ] TODO
-## Completions:
-- [ ] TODO
-## Plugins:
-- [ ] TODO
-## Test:
-- [ ] TODO
-## Contributions:
+- [ ] TODO ## Contributions:
 
 
 [1]:https://github.com/treyhunner/tmuxstart
