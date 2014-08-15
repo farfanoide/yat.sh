@@ -22,29 +22,29 @@ _is_command() {
     [ ! -z $(command -v yatsh-"$command") ]
 }
 
-_split_path(){
+_split_path() {
     local path=$1
     echo "${path//:/$'\n'}"
 }
 
-escape_slashes(){
+escape_slashes() {
     echo $* | perl -pe 's/\//\\\//g'
 }
 
-bin_path(){
+bin_path() {
     cmd=$1
     [[ "$(which $cmd)" =~ "alias" ]] && unalias "$cmd"
     echo $(dirname $(which $cmd))
 }
 
-remove_dir_from_path(){
+remove_dir_from_path() {
     echo $(echo $PATH | perl -pe "s/$(escape_slashes $1)://g")
 }
 
 _extract() {
     local keyword=$1; shift
     local file=$1   ; shift
-    cat $file | grep -i "#= ${keyword}:" | cut -d':' -f2 | tr -d ' '
+    cat $file | grep -i "#= ${keyword}:" | cut -d':' -f2
 }
 
 _find_session_file() {

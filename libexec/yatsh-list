@@ -2,8 +2,9 @@
 
 
 usage() {
-    echo -e "List ${SCPT_NAME} session files."
-    echo -e "Usage: ${SCPT_NAME} list|ls"
+    echo -e "List available session files."
+    echo -e "Usage: ${SCPT_NAME} list"
+    echo -e "Alias: ${SCPT_NAME} ls"
 }
 
 [ "$1" = '--help' ] && usage && exit 0

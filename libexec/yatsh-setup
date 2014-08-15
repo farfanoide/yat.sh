@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-mkdir -p $YATSH_DIR $YATSH_SESSIONS_DIR
-cp -r  $YATSH_ROOT/examples $YATSH_DIR

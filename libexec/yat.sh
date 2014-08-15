@@ -28,8 +28,12 @@ abs_dirname() {
 [ -z "$YATSH_ROOT" ]         && export YATSH_ROOT="$(abs_dirname $0)/.."
 [ -z "$YATSH_DIR" ]          && export YATSH_DIR="$HOME/.$SCPT_NAME"
 [ -z "$YATSH_SESSIONS_DIR" ] && export YATSH_SESSIONS_DIR="${YATSH_DIR}/sessions"
-[ -z "$YATSH_SESSIONS_PATH" ]&& export YATSH_SESSIONS_PATH="$(pwd):$YATSH_DIR/sessions:$YATSH_ROOT/sessions"
-[ ! -d $YATSH_DIR ]          && exec yatsh-setup
+[ -z "$YATSH_SESSIONS_PATH" ]&& export YATSH_SESSIONS_PATH="$(pwd):$YATSH_SESSIONS_DIR"
+
+if [ ! -d $YATSH_DIR ]; then
+    mkdir -p $YATSH_DIR $YATSH_SESSIONS_DIR
+    cp -r  $YATSH_ROOT/examples $YATSH_DIR
+fi
 
 #= Plugins path:
 if [ -z $YATSH_PLUGINS_PATH ]; then

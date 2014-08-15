@@ -12,17 +12,6 @@ SESSION=$1
 source "${YATSH_ROOT}/lib/global_helpers.sh"
 source "${YATSH_ROOT}/lib/session_helpers.sh"
 
-_find_session_file(){
-    local name=$1
-    shopt -s nullglob
-    for dir in $(_split_path $YATSH_SESSIONS_PATH); do
-        for file in "${dir}"/*; do
-            [ $(basename $file) = $name ] && echo $file && return 0
-        done
-    done
-    shopt -u nullglob
-    return 1
-}
 
 # session_file="$(_find_session_file $SESSION)"
 # echo $session_file  ; exit
@@ -35,16 +24,13 @@ if ! tmux has-session -t $SESSION 2> /dev/null ; then
         tmux new-session -d -s $SESSION
     else
         if [ -h $session_file ]; then
-            cd $(dirname $(readlink $session_file))
-        else
-            cd $(dirname $session_file)
+            cd $(dirname $(readlink $session_file)) && session_file="./$SESSION"
         fi
-        custom_loader=$(_extract 'LOADER' $session_file)
+        custom_loader=$(_extract 'LOADER' $session_file | tr -d ' ')
         if [ ! -z $custom_loader ] && _is_command $custom_loader; then
-            echo $custom_loader
-            exec yatsh-$custom_loader $SESSION
+            exec yatsh-$custom_loader $session_file
         else
-            source $SESSION
+            source $session_file
         fi
     fi
 fi

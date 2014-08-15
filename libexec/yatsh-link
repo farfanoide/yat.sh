@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 usage() {
-    echo 'link help'
+    echo 'Link local session file to global directory'
+    echo
+    echo "Usage: $SCPT_NAME link SESSION"
+    echo
+    echo 'Once you link a local session file, it will be available from anywhere'
 }
 
 [ "$1" = '--help' -o $# -lt 1 ] && usage && exit 0
