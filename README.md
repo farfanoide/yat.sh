@@ -47,9 +47,9 @@ folder.
 Session types:
 --------------
 
-Out of the box Yat.sh has support for 3 types of sessions: "Local", "Global" and "Remote".
+Out of the box Yat.sh has support for 3 types of sessions: "Portable", "Global" and "Remote".
 
-    Local Sessions:
+    Portable Sessions:
 
     These care about the directory from which they're invoked, since all their
     commands are relative to it. This might seem irrelevant, but in fact it
