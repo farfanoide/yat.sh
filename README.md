@@ -72,7 +72,14 @@ Out of the box Yat.sh has support for 3 types of sessions: "Portable", "Global" 
     remote connections are done via ssh, but mosh support is on the way.
 
 ## Installation:
-Download this repo and make sure `bin/yat.sh` is in your $PATH
+If you're on a mac you can install via homebrew:
+
+```bash
+    $ brew install --HEAD https://raw.github.com/farfanoide/yat.sh/master/yat_sh.rb
+```
+
+Or you can manually download this repo and make sure `bin/yat.sh` is in your
+$PATH
 
 1. Download the repo into `~/.yat.sh`.
 
