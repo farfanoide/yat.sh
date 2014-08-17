@@ -2,7 +2,7 @@ require "formula"
 
 class YatSh < Formula
   homepage "https://github.com/farfanoide/yat.sh"
-  head "https://github.com/farfanoide/yat.sh/archive/master.zip"
+  head "https://github.com/farfanoide/yat.sh.git"
 
   depends_on "tmux" => :build
 
