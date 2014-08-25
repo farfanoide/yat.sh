@@ -220,16 +220,16 @@ add a description to them which will be parsed and shown whenever you call
 Remote session files take a number of data attrs, some optional and some
 required, here's what each of them does:
 
-[required]`SERVER` should be in the form of `user@server_ip` it could alternatively be an
+`SERVER` [required] should be in the form of `user@server_ip` it could alternatively be an
 alias set in your `~/.ssh/config` file.
 
-[optional]`NAME` is the name for the tmux session. You might wanna have a
+`NAME` [optional] is the name for the tmux session. You might wanna have a
 session called 'main' on every server you manage, this way your session files
 can have different names from the sessions they'll launch.
 
-[optional]`LOADER` would be the name of the plugin to load your session file. this is
+`LOADER` [optional] would be the name of the plugin to load your session file. this is
 helpful if you want to load your session files only by name (`yat.sh 'your_remote_session'`)
-instead of explicitely calling the desired plugin, ie: `yat.sh remote 'your_remote_session'`
+instead of explicitly calling the desired plugin, ie: `yat.sh remote 'your_remote_session'`
 For a remote session you would set `#= LOADER: remote`
 
 
