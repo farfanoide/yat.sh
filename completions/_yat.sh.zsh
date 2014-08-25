@@ -14,12 +14,12 @@
 # ------------------------------------------------------------------------------
 local sessions_dir running_sessions global_sessions
 
-sessions_dir=${YATSH_DIR:-$HOME/.yat.sh}
+yatsh_dir=${YATSH_DIR:-$HOME/.yat.sh}
+sessions_dir=${YATSH_SESSIONS_DIR:-$yatsh_dir/sessions}
+examples_dir=${YATSH_EXAMPLES_DIR:-$yatsh_dir/examples}
 
-global_sessions=($(\ls "$sessions_dir/globals"))
-local_sessions=($(\ls "$sessions_dir/locals"))
-example_sessions=($(\ls "$sessions_dir/examples"))
-# all_sessions=$global_sessions
+session_files=($(\ls "$sessions_dir"))
+example_files=($(\ls "$examples_dir"))
 
 running_sessions=($(tmux list-sessions -F '#S' 2> /dev/null))
 
@@ -36,10 +36,10 @@ _arguments -s \
     '-l::List all available session files'\
     '--list::List all available session files'\
     '-c:Copy local session file to global directory:_files ./*'\
-    '-o:Edit/Create session file:($global_sessions $local_sessions)'\
+    '-o:Edit/Create session file:($session_files)'\
+    '-d:Delete session file:($session_files)'\
     '-e:Example file:($example_sessions)'\
-    '-d:Delete session file:($global_sessions $local_sessions)'\
     '-v:Print version number'\
     '--version:Print version number'\
-    '*:Start/Attach session:($global_sessions $running_sessions $local_sessions)'
+    '*:Start/Attach session:($session_files)'
 

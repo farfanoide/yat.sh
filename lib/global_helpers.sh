@@ -14,7 +14,6 @@ _check_for_tmux() {
 
 _capitalize() {
     echo "$*" | perl -pe 's/\S+/\u$&/g'
-    # echo "$*" | { dd bs=1 count=1 conv=ucase 2> /dev/null; cat ;}
 }
 
 _is_command() {
@@ -27,7 +26,7 @@ _split_path() {
     echo "${path//:/$'\n'}"
 }
 
-escape_slashes() {
+_escape_slashes() {
     echo $* | perl -pe 's/\//\\\//g'
 }
 
@@ -38,7 +37,7 @@ bin_path() {
 }
 
 remove_dir_from_path() {
-    echo $(echo $PATH | perl -pe "s/$(escape_slashes $1)://g")
+    echo $(echo $PATH | perl -pe "s/$(_escape_slashes $1)://g")
 }
 
 _extract() {

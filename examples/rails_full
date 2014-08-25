@@ -1,4 +1,6 @@
-# Create new session and name first window 'Editor'
+#= AUTHOR: farfanoide (https://github.com/farfanoide)
+#= DESCRIPTION: Full fledged rails dev env (editor, console, db, server)
+
 new_session -n 'Editor'
 send_line 'Editor' ${EDITOR:-vi}
 

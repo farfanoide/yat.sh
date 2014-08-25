@@ -207,12 +207,38 @@ these data attributes are bash comments that follow a simple pattern:
 #= KEY: everything after the semicolon is used as value
 ```
 
+Where and how to use them:
+
+If you generate your own example session files, you might find it helpful to
+add a description to them which will be parsed and shown whenever you call
+`yat.sh example`. Here's how:
+
+```bash
+#= DESCRIPTION: Simple session running cmus
+```
+
+Remote session files take a number of data attrs, some optional and some
+required, here's what each of them does:
+
+[required]`SERVER` should be in the form of `user@server_ip` it could alternatively be an
+alias set in your `~/.ssh/config` file.
+
+[optional]`NAME` is the name for the tmux session. You might wanna have a
+session called 'main' on every server you manage, this way your session files
+can have different names from the sessions they'll launch.
+
+[optional]`LOADER` would be the name of the plugin to load your session file. this is
+helpful if you want to load your session files only by name (`yat.sh 'your_remote_session'`)
+instead of explicitely calling the desired plugin, ie: `yat.sh remote 'your_remote_session'`
+For a remote session you would set `#= LOADER: remote`
+
+
+
 - [ ] TODO ## Creating session files:
 - [ ] TODO ## Usage:
 - [ ] TODO ## Completions:
 - [ ] TODO ## Plugins:
 - [ ] TODO ## Test:
-- [ ] TODO
 - [ ] TODO ## Contributions:
 
 

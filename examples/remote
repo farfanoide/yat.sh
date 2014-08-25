@@ -1,7 +1,7 @@
+#= AUTHOR: farfanoide (https://github.com/farfanoide)
 #= DESCRIPTION: Basic remote tmux session
 #= SERVER: server
 #= NAME: test
-#= CUSTOM: ssh -p 3434 user@server
 #= LOADER: remote
 
 new_session -n 'General'
