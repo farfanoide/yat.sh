@@ -159,11 +159,13 @@ behaviour which would be to save it under `$YATSH_SESSIONS_DIR`
     $ yat.sh new session_name -e example_name
 ```
 
-#### Open
-Open a session file for editing with your `$EDITOR`
+#### Edit
+
+Open a session file for editing with your `$EDITOR` if set, otherwise with
+`vi`.
 
 ```bash
-    $ yat.sh open session_file
+    $ yat.sh edit session_file
 ```
 
 #### Remote
@@ -175,6 +177,7 @@ from then on, everything works just like with `yat.sh load` but on the remote se
 
 Example remote session:
 ($YATSH_SESSIONS_DIR/remote_session)
+
 ```bash
 
 #= SERVER: root@myserver

@@ -22,7 +22,7 @@ abs_dirname() {
 
 #= Info:
 [ -z "$SCPT_NAME" ]          && export SCPT_NAME=$(basename $0)
-[ -z "$YATSH_VERSION" ]      && export VERSION='[ 0.1.0-alpha ]'
+[ -z "$YATSH_VERSION" ]      && export YATSH_VERSION='[ 0.1.0-alpha ]'
 
 #= Directories:
 [ -z "$YATSH_ROOT" ]         && export YATSH_ROOT="$(abs_dirname $0)/.."
@@ -69,7 +69,7 @@ _usage() {
     echo -e "${TAB}${Y}list    ${RESET} -- List available session files and other running sessions."
     echo -e "${TAB}${Y}load    ${RESET} -- Launch/load session. ${G}(default)${RESET}"
     echo -e "${TAB}${Y}new     ${RESET} -- Create new [local] session file [from example]."
-    echo -e "${TAB}${Y}open    ${RESET} -- Open [local] session file for editing."
+    echo -e "${TAB}${Y}edit    ${RESET} -- Edit [local] session file for editing."
     echo -e "${TAB}${Y}remote  ${RESET} -- Launch/load remote session."
     echo -e "${TAB}${Y}version ${RESET} -- Print ${SCPT_NAME} version number."
 }
