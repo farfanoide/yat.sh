@@ -263,7 +263,52 @@ LOADER: remote`
 
 
 
-- [ ] TODO ## Creating session files:
+Creating session files:
+-----------------------
+
+Session files are scripts which will be invoked by `yat.sh` to start up tmux
+sessions. Many helpers are provided in order to make this a much less painful
+task.
+
+### Helpers:
+
+  1. Session helpers:
+      ```bash
+      new_session  #=> this is the only required command on any session file.
+      set_env      #=> set environment vars
+      set_path     #=> set default path for new panes
+      ```
+
+  2. Window helpers:
+      ```bash
+      kill_window
+      new_window
+      split
+      hsplit        #=> split horizontally
+      vsplit        #=> split vertically
+      select_window
+      rename
+      select_layout #=> default layouts are: even-horizontal, even-vertical,
+                                             main-horizontal, main-vertical, tiled.
+      get_window_base_index
+      ```
+  3. Pane helpers:
+      ```bash
+      select_pane #=> selects given pane number
+      send_keys   #=> send set of characters as key-down events
+      send_line   #=> same as send_keys but add 'Enter'
+      swap        #=> swap two panes
+      ```
+
+  4. Miscellaneous helpers:
+      ```bash
+      _height     #=> get current terminal's height
+      _width      #=> get current terminal's width
+      _portrait   #=> true if terminal is tall
+      _widescreen #=> true if terminal is wide
+      ```
+
+
 - [ ] TODO ## Usage:
 - [ ] TODO ## Completions:
 - [ ] TODO ## Plugins:
