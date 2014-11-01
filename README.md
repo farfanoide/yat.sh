@@ -289,7 +289,7 @@ task.
       select_window
       rename
       select_layout #=> default layouts are: even-horizontal, even-vertical,
-                                             main-horizontal, main-vertical, tiled.
+                    # main-horizontal, main-vertical, tiled.
       get_window_base_index
       ```
   3. Pane helpers:
