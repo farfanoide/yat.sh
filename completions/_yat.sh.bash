@@ -2,7 +2,7 @@
 # Description
 # -----------
 #
-#  Completion script for tmuxstart under bash (https://github.com/treyhunner/tmuxstart).
+#  Completion script for yat.sh under bash (https://github.com/farfanoide/yat.sh)
 #
 # ------------------------------------------------------------------------------
 # Authors
@@ -12,9 +12,9 @@
 #
 # ------------------------------------------------------------------------------
 
-_tmuxstart()
+_yat.sh()
 {
     local cur=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=( $(compgen -W "$(\ls ${TMUXSTART_DIR:-$HOME/.tmuxstart})" -- $cur) )
+    COMPREPLY=( $(compgen -W "$(\ls ${YATSH_DIR:-$HOME/.yat.sh}/sessions)" -- $cur) )
 }
-complete -F _tmuxstart tmuxstart
+complete -F _yat.sh yat.sh
