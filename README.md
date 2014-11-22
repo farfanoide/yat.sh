@@ -4,7 +4,7 @@ yat.sh
     (Yet another Tmux session handler)
 
 `Yat.sh` is an attempt at making tmux session management easy and portable, it
-was once based on Trey Hunner's [tmuxstart][1], but has been rethought (and
+was once based on Trey Hunner's [tmuxstart][tmuxstart], but has been rethought (and
 rewritten) for my own requirements, with portability and extensibility as main
 goals.
 
@@ -23,7 +23,7 @@ Yat.sh is basically a set of shell scripts meaning the only dependency for it
 to work is tmux itself. You don't need ruby or any gem, just install it into
 your path and you're good to go.
 
-Traditionally, alternatives like [tmuxinator][2] and [teamocil][3] only let you
+Traditionally, alternatives like [tmuxinator][tmuxinator] and [teamocil][teamocil] only let you
 have session files in one directory, which is great when you have a reduced
 number of them, but as you work on new projects your list rapidly grows,
 however, for the most part, you're only gonna use a few of those sessions at a
@@ -274,9 +274,9 @@ task.
 
   1. Session helpers:
       ```bash
-      new_session  #=> this is the only required command on any session file.
-      set_env      #=> set environment vars
-      set_path     #=> set default path for new panes
+      new_session  # => this is the only required command on any session file.
+      set_env      # => set environment vars
+      set_path     # => set default path for new panes
       ```
 
   2. Window helpers:
@@ -284,38 +284,91 @@ task.
       kill_window
       new_window
       split
-      hsplit        #=> split horizontally
-      vsplit        #=> split vertically
+      hsplit        # => split horizontally
+      vsplit        # => split vertically
       select_window
       rename
-      select_layout #=> default layouts are: even-horizontal, even-vertical,
+      select_layout # => default layouts are: even-horizontal, even-vertical,
                     # main-horizontal, main-vertical, tiled.
       get_window_base_index
       ```
   3. Pane helpers:
       ```bash
-      select_pane #=> selects given pane number
-      send_keys   #=> send set of characters as key-down events
-      send_line   #=> same as send_keys but add 'Enter'
-      swap        #=> swap two panes
+      select_pane # => selects given pane number
+      send_keys   # => send set of characters as key-down events
+      send_line   # => same as send_keys but add 'Enter'
+      swap        # => swap two panes
       ```
 
   4. Miscellaneous helpers:
       ```bash
-      _height     #=> get current terminal's height
-      _width      #=> get current terminal's width
-      _portrait   #=> true if terminal is tall
-      _widescreen #=> true if terminal is wide
+      _height     # => get current terminal's height
+      _width      # => get current terminal's width
+      _portrait   # => true if terminal is tall
+      _widescreen # => true if terminal is wide
       ```
 
+<!-- &#45; [ ] TODO ## Completions: -->
+CLI tab Completions:
+--------------------
 
-- [ ] TODO ## Usage:
-- [ ] TODO ## Completions:
+Currently there's only basic zsh and bash support for tab completions.
+
+To enable tab completion in `zsh`, add the completion file to a directory in
+your `fpath`:
+
+```bash
+mkdir -p ~/.zsh/completions
+cp completions/_yat.sh.zsh ~/.zsh/completions/_yat.sh
+```
+
+Add the following to your .zshrc file to ensure tab completion is enabled and
+the `~/.zsh/completions` directory is added to your `fpath`
+
+```bash
+autoload -U compinit
+
+compinit
+
+fpath=(~/.zsh/completion $fpath)
+```
+
+If you're doing this by hand you'll probably want to execute this too:
+
+```bash
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+```
+
+
+In bash it should work by sourcing the file directly.  For example you could
+have a line lik this in yout `.bashrc`:
+
+```bash
+source "path_to_yat_sh_completions/yat.sh.bash"
+```
+
+License:
+--------
+
+See the [LICENSE](LICENSE).
+
+Contributing:
+--------------
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
 - [ ] TODO ## Plugins:
 - [ ] TODO ## Test:
-- [ ] TODO ## Contributions:
 
 
-[1]:https://github.com/treyhunner/tmuxstart
-[2]:https://github.com/tmuxinator/tmuxinator
-[3]:https://github.com/remiprev/teamocil
+<!-- links -->
+[tmuxstart]:https://github.com/treyhunner/tmuxstart
+[tmuxinator]:https://github.com/tmuxinator/tmuxinator
+[teamocil]:https://github.com/remiprev/teamocil
+<!-- end links -->
