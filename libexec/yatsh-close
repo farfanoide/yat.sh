@@ -9,8 +9,6 @@ usage(){
 
 [ "$1" = "--help" -o $# -lt 1 ] && usage && exit 0
 
-source "${YATSH_ROOT}/lib/global_helpers.sh"
-
 session_name=$1
 while getopts ':a' option; do
     case "$option" in
@@ -18,8 +16,8 @@ while getopts ':a' option; do
         *) echo "Invalid option" ; usage ; exit 1 ;;
     esac
 done
-if [ ! "$close_all" ]; then
-    tmux kill-session -t "$session_name"
+if [ "$close_all" ]; then
+    tmux kill-server
 else
-    tmux ls | awk '{print $1}' | sed 's/://g' | xargs -I{} tmux kill-session -t {}
+    tmux kill-session -t "$session_name"
 fi
