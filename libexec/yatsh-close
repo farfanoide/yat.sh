@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+usage(){
+    echo -e "${SCPT_NAME} close [SESSION] [-a]"
+    echo
+    echo -e 'Available options:'
+    echo -e "${TAB}${Y}-a         ${RESET} -- Close all tmux sessions."
+}
+
+[ "$1" = "--help" -o $# -lt 1 ] && usage && exit 0
+
+session_name=$1
+while getopts ':a' option; do
+    case "$option" in
+        a) close_all=true ;;
+        *) echo "Invalid option" ; usage ; exit 1 ;;
+    esac
+done
+if [ "$close_all" ]; then
+    tmux kill-server
+else
+    tmux kill-session -t "$session_name"
+fi

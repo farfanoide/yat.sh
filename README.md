@@ -170,6 +170,15 @@ attached to.
     $ yat.sh load session_file
 ```
 
+#### Close
+
+Close tmux sessions. Specify session name to close specific session. If `-a`
+flag is given, close all tmux current sessions.
+
+```bash
+    $ yat.sh close session_name
+```
+
 #### New
 
 Create a session file optionally from a predefined example. If `-l` flag is
