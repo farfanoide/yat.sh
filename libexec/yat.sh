@@ -68,6 +68,7 @@ _usage() {
     echo -e "${TAB}${Y}link    ${RESET} -- Link local session file to global directory."
     echo -e "${TAB}${Y}list    ${RESET} -- List available session files and other running sessions."
     echo -e "${TAB}${Y}load    ${RESET} -- Launch/load session. ${G}(default)${RESET}"
+    echo -e "${TAB}${Y}close   ${RESET} -- Close [all] session[s]."
     echo -e "${TAB}${Y}new     ${RESET} -- Create new [local] session file [from example]."
     echo -e "${TAB}${Y}remote  ${RESET} -- Launch/load remote session."
     echo -e "${TAB}${Y}version ${RESET} -- Print ${SCPT_NAME} version number."
