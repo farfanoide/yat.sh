@@ -36,14 +36,10 @@ bin_path() {
     echo $(dirname $(which $cmd))
 }
 
-remove_dir_from_path() {
-    echo $(echo $PATH | perl -pe "s/$(_escape_slashes $1)://g")
-}
-
 _extract() {
     local keyword=$1; shift
     local file=$1   ; shift
-    cat $file | grep -i "#= ${keyword}:" | cut -d':' -f2
+    grep -i "#= ${keyword}:" $file | cut -d':' -f2
 }
 
 _find_session_file() {
@@ -51,9 +47,18 @@ _find_session_file() {
     shopt -s nullglob
     for dir in $(_split_path $YATSH_SESSIONS_PATH); do
         for file in "${dir}"/*; do
-            [ $(basename $file) = $name ] && echo $file && return 0
+            [ "$(basename $file)" = "${name}" ] && echo $file && return 0
         done
     done
     shopt -u nullglob
     return 1
+}
+
+_all_session_paths() {
+    shopt -s nullglob
+    echo "${YATSH_SESSIONS_DIR}/*"
+    shopt -u nullglob
+}
+_all_session_names() {
+    echo $(\ls $YATSH_SESSIONS_DIR)
 }

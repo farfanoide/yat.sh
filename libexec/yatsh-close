@@ -10,12 +10,14 @@ usage(){
 [ "$1" = "--help" -o $# -lt 1 ] && usage && exit 0
 
 session_name=$1
+
 while getopts ':a' option; do
     case "$option" in
         a) close_all=true ;;
         *) echo "Invalid option" ; usage ; exit 1 ;;
     esac
 done
+
 if [ "$close_all" ]; then
     tmux kill-server
 else

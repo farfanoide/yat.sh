@@ -4,9 +4,10 @@
 
 [ ! $# -gt 0 ] && exec yat.sh --help && return 0
 
-COMMAND=$(command -v "yatsh-${1}")
+source "${YATSH_ROOT}/lib/global_helpers.sh"
 
-if [ ! -z "$COMMAND" ]; then
-    exec $COMMAND --help
+command=$1
+
+if _is_command $command; then
+    exec "yatsh-${command}" --help
 fi
-

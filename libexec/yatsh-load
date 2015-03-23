@@ -7,14 +7,10 @@ usage(){
 
 [ "$1" = "--help" -o $# -lt 1 ] && usage && exit 0
 
-SESSION=$1
-
 source "${YATSH_ROOT}/lib/global_helpers.sh"
 source "${YATSH_ROOT}/lib/session_helpers.sh"
 
-
-# session_file="$(_find_session_file $SESSION)"
-# echo $session_file  ; exit
+SESSION=$1
 TMUX_OLD=$TMUX
 TMUX=
 if ! tmux has-session -t $SESSION 2> /dev/null ; then

@@ -1,4 +1,4 @@
-#= DESCRIPTION: Basic tmux session
+#= DESCRIPTION: Basic tmux session for developing yat.sh
 
 new_session -n 'Editor'
 

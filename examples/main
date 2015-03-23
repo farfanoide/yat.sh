@@ -9,7 +9,7 @@ new_window -n 'Music'
 send_line 'Music' 'cd ~/Music'
 
 new_window -n 'Downloads'
-send_line 'Downloads' "cd ~/Downloads ; ls"
+send_line 'Downloads' 'cd ~/Downloads ; ls'
 
 # -*- mode: sh -*-
 # vi: set ft=sh :

@@ -157,7 +157,7 @@ List available session files and optionally other running sessions. (alias =
 ls)
 
 ```bash
-    $ yat.sh list
+    $ yat.sh list -a
 ```
 
 #### Load

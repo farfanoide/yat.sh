@@ -2,9 +2,7 @@
 
 READLINK=$(type -p greadlink readlink | head -1)
 
-resolve_link() {
-    $READLINK "$1"
-}
+resolve_link() { $READLINK "$1" ;}
 
 abs_dirname() {
     local cwd="$(pwd)"
@@ -21,14 +19,14 @@ abs_dirname() {
 }
 
 #= Info:
-[ -z "$SCPT_NAME" ]          && export SCPT_NAME=$(basename $0)
-[ -z "$YATSH_VERSION" ]      && export YATSH_VERSION='[ 0.1.0-alpha ]'
+[ -z "$SCPT_NAME" ]           && export SCPT_NAME=$(basename $0)
+[ -z "$YATSH_VERSION" ]       && export YATSH_VERSION='[ 0.1.0-alpha ]'
 
 #= Directories:
-[ -z "$YATSH_ROOT" ]         && export YATSH_ROOT="$(abs_dirname $0)/.."
-[ -z "$YATSH_DIR" ]          && export YATSH_DIR="$HOME/.$SCPT_NAME"
-[ -z "$YATSH_SESSIONS_DIR" ] && export YATSH_SESSIONS_DIR="${YATSH_DIR}/sessions"
-[ -z "$YATSH_SESSIONS_PATH" ]&& export YATSH_SESSIONS_PATH="$(pwd):$YATSH_SESSIONS_DIR"
+[ -z "$YATSH_ROOT" ]          && export YATSH_ROOT="$(abs_dirname $0)/.."
+[ -z "$YATSH_DIR" ]           && export YATSH_DIR="$HOME/.$SCPT_NAME"
+[ -z "$YATSH_SESSIONS_DIR" ]  && export YATSH_SESSIONS_DIR="${YATSH_DIR}/sessions"
+[ -z "$YATSH_SESSIONS_PATH" ] && export YATSH_SESSIONS_PATH="$(pwd):$YATSH_SESSIONS_DIR"
 
 if [ ! -d $YATSH_DIR ]; then
     mkdir -p $YATSH_DIR $YATSH_SESSIONS_DIR
@@ -47,7 +45,7 @@ fi
 source "${YATSH_ROOT}/lib/global_helpers.sh"
 
 #= Colors and characters:
-export TAB='    '
+export TAB='  '
 export RESET='\033[0m'
 export G='\033[0;32m'
 export Y='\033[0;33m'
@@ -93,6 +91,6 @@ arg=$1; shift
 if _is_command $arg; then
     exec yatsh-$arg $*
 else
-    exec yatsh-load $arg
+    exec yatsh-load $arg $*
 fi
 

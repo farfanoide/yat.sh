@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
+usage(){
+    echo -e "${SCPT_NAME} edit [SESSION]"
+    echo -e "Edit [local] session file for editing."
+}
+
 [ $# -lt 1 ] && echo "Not enough arguments" && exit 1
 
-. "${YATSH_ROOT}/lib/global_helpers.sh"
+source "${YATSH_ROOT}/lib/global_helpers.sh"
 
 session_file="${YATSH_DIR}/sessions/$1"
 

@@ -22,14 +22,16 @@ session_file="$1"; shift
 session_name="$(_remote_session_name)"
 
 _remote_script(){
-    echo "if tmux has-session -t ${session_name} 2> /dev/null ; then"
-    echo "tmux attach-session -t ${session_name}"
-    echo "else"
-    echo "SESSION=${session_name}"
-    echo "$(_strip_comments "${YATSH_ROOT}/lib/session_helpers.sh")"
-    echo "SESSION=${session_name} $(_strip_comments $session_file)"
-    echo "tmux attach-session -t ${session_name}"
-    echo fi
+cat <<EOS
+if tmux has-session -t ${session_name} 2> /dev/null ; then
+    tmux attach-session -t ${session_name}
+else
+    SESSION=${session_name}
+    $(_strip_comments "${YATSH_ROOT}/lib/session_helpers.sh")
+    SESSION=${session_name} $(_strip_comments $session_file)
+    tmux attach-session -t ${session_name}
+fi
+EOS
 }
 
 if _file_exists $session_file; then

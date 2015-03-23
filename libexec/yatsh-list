@@ -5,23 +5,52 @@ usage() {
     echo -e "List available session files."
     echo -e "Usage: ${SCPT_NAME} list"
     echo -e "Alias: ${SCPT_NAME} ls"
+    echo
+    echo -e 'Available options:'
+    echo -e "${TAB}${Y}-a         ${RESET} -- Also list other running tmux sessions."
 }
 
 [ "$1" = '--help' ] && usage && exit 0
 
+source "${YATSH_ROOT}/lib/global_helpers.sh"
+
+while getopts ':a' option; do
+    case "$option" in
+        a) list_all=true ;;
+        *) echo "Invalid option" ; usage ; exit 1 ;;
+    esac
+done
+
 _print_session_name() {
     local session=$1
-    if tmux has-session -t "$session" 2> /dev/null ; then session="$session $G(running)$RESET" ; fi
+    if tmux has-session -t "$session" 2> /dev/null; then
+        session="$session (running)"
+    fi
     echo -e "[-] $session"
 }
 
-_list_sessions(){
-    shopt -s nullglob
-    for file in "${YATSH_DIR}"/sessions/*; do
-        _print_session_name $(basename $file)
+_non_yatsh_sessions(){
+    local sessions=($(tmux list-sessions -F '#S' 2> /dev/null))
+    local yatsh_sessions=$(_all_session_names)
+    for session in ${yatsh_sessions[*]}; do
+        sessions=(${sessions[*]//*$session*})
     done
-    shopt -u nullglob
+    echo ${sessions[*]}
 }
 
-_list_sessions | column
+_list_sessions(){
+    local sessions=$1; shift
+    for session in ${sessions[*]}; do
+        _print_session_name $session
+    done
+}
+
+echo -e "${G}${SCPT_NAME}${RESET} sessions:"
+_list_sessions "$(_all_session_names)" | column
+
+if [ "$list_all" ]; then
+    echo
+    echo -e 'Other running sessions:'
+    _list_sessions "$(_non_yatsh_sessions)" | column
+fi
 
