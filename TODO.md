@@ -5,7 +5,9 @@
 #                   --move session[s] newgroup => move session[s] from one group to another
 # options would be: --new groupname  => create new group
 
-fix errors:
+- [ ] fix errors:
     new_session:cd:2: no such file or directory: /usr/local/bin /usr/local/sbin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games
     set option: default-path -> "/usr/local/bin /usr/local/sbin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games"
     tmux 1.8
+
+- [ ] unify usage() function
