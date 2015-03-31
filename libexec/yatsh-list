@@ -50,7 +50,7 @@ _list_sessions "$(_all_session_names)" | column
 
 if [ "$list_all" ]; then
     non_yat_sessions=$(_non_yatsh_sessions)
-    if [ ${#non_yat_sessions[*]} -ge 1 ]; then
+    if [ -n "${non_yat_sessions[*]}" ]; then
         echo
         echo -e 'Other running sessions:'
         _list_sessions $(_non_yatsh_sessions) | column
