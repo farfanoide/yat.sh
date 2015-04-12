@@ -10,11 +10,11 @@ usage() {
 source "${YATSH_ROOT}/lib/global_helpers.sh"
 
 _list_examples() {
-    shopt -s nullglob
+    _set_opt nullglob
     for example in "$YATSH_ROOT/examples"/*; do
         echo -e "${Y}$(basename $example)${RESET} # -- $(_extract 'DESCRIPTION' $example)"
     done
-    shopt -u nullglob
+    _unset_opt nullglob
 }
 
 _list_examples | column -t -s'#'

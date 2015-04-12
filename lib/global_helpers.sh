@@ -44,21 +44,30 @@ _extract() {
 
 _find_session_file() {
     local name=$1
-    shopt -s nullglob
+    _set_opt nullglob
     for dir in $(_split_path $YATSH_SESSIONS_PATH); do
         for file in "${dir}"/*; do
             [ "$(basename $file)" = "${name}" ] && echo $file && return 0
         done
     done
-    shopt -u nullglob
+    _unset_opt nullglob
     return 1
 }
 
 _all_session_paths() {
-    shopt -s nullglob
+    _set_opt nullglob
     echo "${YATSH_SESSIONS_DIR}/*"
-    shopt -u nullglob
+    _unset_opt nullglob
 }
+
 _all_session_names() {
     echo $(\ls $YATSH_SESSIONS_DIR)
+}
+
+_set_opt()   {
+    shopt -s $*
+}
+
+_unset_opt() {
+    shopt -u $*
 }

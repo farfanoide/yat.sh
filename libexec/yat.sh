@@ -74,7 +74,7 @@ _usage() {
 [ "$1" = '--help' -o $# -lt 1 ] && _usage && exit 1
 
 # Add all relevant directories to PATH so we can find plugins and custom commands
-shopt -s nullglob
+_set_opt nullglob
 bin_path="$(abs_dirname "$0")"
 for dir in $(_split_path $YATSH_PLUGINS_PATH); do
     if [ -d $dir ]; then
@@ -84,7 +84,7 @@ for dir in $(_split_path $YATSH_PLUGINS_PATH); do
     fi
 done
 export PATH="${bin_path}:${PATH}"
-shopt -u nullglob
+_unset_opt nullglob
 
 arg=$1; shift
 
