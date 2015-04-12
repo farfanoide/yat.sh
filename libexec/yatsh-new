@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 usage(){
-    echo -e "${SCPT_NAME} new SESSION [-l] [-e EXAMPLE]"
+    echo -e "Usage: ${SCPT_NAME} new SESSION [-l] [-e EXAMPLE]"
+    echo -e 'Create a session file optionally from a predefined example.'
     echo
     echo -e 'Available options:'
     echo -e "${TAB}${Y}-l         ${RESET} -- Create session file in current directory."
@@ -26,7 +27,7 @@ else
     session_file="$(pwd)/${session_name}"
 fi
 
-example_session=$(_echo_example_file $example_name)
+example_session=$(_echo_example_file $example_name || _echo_example_file 'main')
 
 # EDITOR not explicitly set or uses vim
 if [[ -z $EDITOR || $EDITOR =~ 'vi' ]] ; then

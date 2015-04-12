@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 usage() {
-    echo -e "List ${SCPT_NAME} example sessions [with short description]."
-    echo -e "Usage: ${SCPT_NAME} example"
+    echo -e "List ${SCPT_NAME} example sessions with short description"
+    echo -e 'or show the contents of one.'
+    echo -e "Usage: ${SCPT_NAME} examples [EXAMPLENAME]"
 }
 
 [ "$1" = "--help" ] && usage && exit 0
@@ -16,5 +17,12 @@ _list_examples() {
     done
     _unset_opt nullglob
 }
+
+if [ $# -ge 1 ]; then
+    SESSION=$1; shift
+    _echo_example_file $SESSION && exit 0
+fi
+
+[ $? -gt 0 ] && echo 'Session not found'
 
 _list_examples | column -t -s'#'

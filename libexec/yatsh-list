@@ -46,6 +46,7 @@ _list_sessions(){
 }
 
 echo -e "${G}${SCPT_NAME}${RESET} sessions:"
+echo
 _list_sessions "$(_all_session_names)" | column
 
 if [ "$list_all" ]; then
@@ -53,6 +54,7 @@ if [ "$list_all" ]; then
     if [ -n "${non_yat_sessions[*]}" ]; then
         echo
         echo -e 'Other running sessions:'
+        echo
         _list_sessions $(_non_yatsh_sessions) | column
     fi
 fi
