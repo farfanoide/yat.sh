@@ -21,10 +21,11 @@ while getopts ':le:' option; do
         *) echo "Invalid option" ; usage ; exit 1 ;;
     esac
 done
-if [ ! "$local_session" ]; then
-    session_file="${YATSH_SESSIONS_DIR}/${session_name}"
-else
+
+if [ "$local_session" ]; then
     session_file="$(pwd)/${session_name}"
+else
+    session_file="${YATSH_SESSIONS_DIR}/${session_name}"
 fi
 
 example_session=$(_echo_example_file $example_name || _echo_example_file 'main')
