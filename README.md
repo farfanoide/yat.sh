@@ -281,7 +281,10 @@ task.
 
 ### Helpers:
 
+  > Most of these are pretty self explanatory
+
   1. Session helpers:
+
       ```bash
       new_session  # => this is the only required command on any session file.
       set_env      # => set environment vars
@@ -289,27 +292,38 @@ task.
       ```
 
   2. Window helpers:
+
       ```bash
-      kill_window
-      new_window
-      split
-      hsplit        # => split horizontally
-      vsplit        # => split vertically
-      select_window
-      rename
-      select_layout # => default layouts are: even-horizontal, even-vertical,
-                    # main-horizontal, main-vertical, tiled.
-      get_window_base_index
-      ```
-  3. Pane helpers:
-      ```bash
-      select_pane # => selects given pane number
-      send_keys   # => send set of characters as key-down events
-      send_line   # => same as send_keys but add 'Enter'
-      swap        # => swap two panes
+      kill_window           # => kills given window
+      new_window            # => creates new window, to give it a name call it with `-n 'window_name'`
+      split                 # => default window splitting (horizontally)
+      hsplit                # => split horizontally
+      vsplit                # => split vertically
+      select_window         # => target specific window onto which all further input should be directed
+      rename                # => rename window
+      select_layout         # => default layouts are: even-horizontal, even-vertical, main-horizontal, main-vertical, tiled.
+      get_window_base_index # => window base index, useful for local session files to be shared
       ```
 
-  4. Miscellaneous helpers:
+  3. Pane helpers:
+
+      ```bash
+      select_pane         # => selects given pane number
+      send_keys           # => send set of characters as key-down events
+      send_line           # => same as send_keys but adds a carriage return at the end
+      swap                # => swap two panes
+      get_pane_base_index # => pane base index, useful for local session files to be shared
+      ```
+
+  4. General helpers:
+
+      ```bash
+      get_global_option # => gets value for a global option
+      get_window_option # => gets value for a window option
+      ```
+
+  5. Miscellaneous helpers:
+
       ```bash
       _height     # => get current terminal's height
       _width      # => get current terminal's width
@@ -317,7 +331,6 @@ task.
       _widescreen # => true if terminal is wide
       ```
 
-<!-- &#45; [ ] TODO ## Completions: -->
 CLI tab Completions:
 --------------------
 

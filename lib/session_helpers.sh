@@ -32,8 +32,8 @@ get_pane_base_index() { get_window_option pane-base-index; }
 #}}}
 
 # General: #{{{
-get_global_option() { tmux show-window-options -g $* | cut -d' ' -f2; }
-get_window_option() { tmux show-window-options -g $* | cut -d' ' -f2; }
+get_global_option() { tmux show-options -g    $* | cut -d' ' -f2; }
+get_window_option() { tmux show-options -g -w $* | cut -d' ' -f2; }
 #}}}
 
 # Non tmux helpers #{{{
