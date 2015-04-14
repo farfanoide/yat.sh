@@ -2,14 +2,24 @@
 #= DESCRIPTION: Basic tmux global session
 
 # Create a new session and name the first window 'General'
+# This is required as it actually creates the new session
 new_session -n 'General'
+
+# Send some command down to our new window called 'General'
 send_line 'General' 'ls'
 
+# Let's create yet another window
 new_window -n 'Music'
 send_line 'Music' 'cd ~/Music'
 
-new_window -n 'Downloads'
-send_line 'Downloads' 'cd ~/Downloads ; ls'
+# What about splitting windows into panes?
+hsplit'Downloads'
 
-# -*- mode: sh -*-
-# vi: set ft=sh :
+# Now we need to target that panel specifically, we can do it by appending its
+# index to the window name. Pane and window indexes usually range from 0 to n
+# but you can tune it by setting some options on your tmux.conf. If you want
+# your session files to be truly portable there are some helpers that can make
+# it easyer like `get_pane_base_index` and `get_window_base_index`
+paneindex=$(get_pane_base_index)
+send_line "Downloads.$(($paneindex + 1))" 'cd ~/Downloads ; ls'
+
