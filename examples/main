@@ -13,7 +13,7 @@ new_window -n 'Music'
 send_line 'Music' 'cd ~/Music'
 
 # What about splitting windows into panes?
-hsplit'Downloads'
+hsplit 'Downloads'
 
 # Now we need to target that panel specifically, we can do it by appending its
 # index to the window name. Pane and window indexes usually range from 0 to n
