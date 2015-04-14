@@ -4,7 +4,7 @@ _file_exists() {
 
 _echo_example_file() {
     local example="${YATSH_ROOT}/examples/$1"
-    if _file_exists $example; then cat $example; fi
+    _file_exists $example && cat $example || return 1
 }
 
 _check_for_tmux() {
