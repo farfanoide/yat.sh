@@ -3,7 +3,7 @@ yat.sh
 
     (Yet another Tmux session handler)
 
-`Yat.sh` is an attempt at making tmux session management easy and portable, it
+`Yat.sh` is an attempt at making [tmux][tmux] session management easy and portable, it
 was once based on Trey Hunner's [tmuxstart][tmuxstart], but has been rethought (and
 rewritten) for my own requirements, with portability and extensibility as main
 goals.
@@ -390,6 +390,7 @@ Contributing:
 
 
 <!-- links -->
+[tmux]:http://tmux.sourceforge.net
 [tmuxstart]:https://github.com/treyhunner/tmuxstart
 [tmuxinator]:https://github.com/tmuxinator/tmuxinator
 [teamocil]:https://github.com/remiprev/teamocil
