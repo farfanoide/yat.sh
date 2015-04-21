@@ -257,7 +257,7 @@ add a description to them which will be parsed and shown whenever you call
 Remote session files take a number of data attrs, some optional and some
 required, here's what each of them does:
 
-`SERVER` <required> should be in the form of `user@server_ip` it could
+`SERVER` &lt;required&gt; should be in the form of `user@server_ip` it could
 alternatively be an alias set in your `~/.ssh/config` file.
 
 `NAME` [optional] is the name for the tmux session. You might wanna have a
