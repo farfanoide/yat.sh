@@ -1,13 +1,12 @@
 #= AUTHOR: farfanoide (https://github.com/farfanoide)
 #= DESCRIPTION: Basic remote tmux session
-#= SERVER: server
-#= NAME: test
+#= SERVER: user@server_ip -p 443
+#= NAME: Remote Session
 #= LOADER: remote
 
 new_session -n 'General'
 
 send_line 'General' 'ls'
-
 
 # -*- mode: sh -*-
 # vi: set ft=sh :
