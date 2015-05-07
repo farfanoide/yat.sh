@@ -19,8 +19,7 @@ abs_dirname() {
 }
 
 #= Info:
-[ -z "$SCPT_NAME" ]           && export SCPT_NAME=$(basename $0)
-[ -z "$YATSH_VERSION" ]       && export YATSH_VERSION='[ 0.2.0-beta ]'
+export SCPT_NAME=$(basename $0)
 
 #= Directories:
 [ -z "$YATSH_ROOT" ]          && export YATSH_ROOT="$(abs_dirname $0)/.."

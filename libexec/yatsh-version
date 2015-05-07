@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
+YATSH_VERSION='[ 0.2.0-beta ]'
 echo -e "$SCPT_NAME ${G}${YATSH_VERSION}${RESET}"
