@@ -3,10 +3,10 @@ yat.sh
 
     (Yet another Tmux session handler)
 
-`Yat.sh` is an attempt at making [tmux][tmux] session management easy and portable, it
-was once based on Trey Hunner's [tmuxstart][tmuxstart], but has been rethought (and
-rewritten) for my own requirements, with portability and extensibility as main
-goals.
+`Yat.sh` is an attempt at making [tmux][tmux] session management easy and
+portable, it was once based on Trey Hunner's [tmuxstart][tmuxstart], but has
+been rethought (and rewritten) for my own requirements, with portability and
+extensibility as main goals.
 
 ![Screenshot](http://cl.ly/image/0S2l1J1n2v23/yatsh.gif)
 
@@ -81,10 +81,20 @@ and "Remote".
 Installation:
 -------------
 
-If you're on a mac you can install via homebrew:
+If you're on a mac you can install via homebrew
+([reference](https://github.com/farfanoide/homebrew-yatsh)):
+
+Latest version (requires manual updating):
 
 ```bash
-    $ brew install --HEAD https://raw.github.com/farfanoide/yat.sh/master/yat_sh.rb
+    $ brew install --HEAD https://raw.github.com/farfanoide/homebrew-yatsh/master/yatsh.rb
+```
+
+Stable version (supports updates via brew):
+
+```bash
+    $ brew tap farfanoide/yatsh
+    $ brew install yatsh
 ```
 
 Or you can manually download this repo and make sure `bin/yat.sh` is in your
