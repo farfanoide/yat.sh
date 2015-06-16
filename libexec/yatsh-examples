@@ -13,7 +13,7 @@ source "${YATSH_ROOT}/lib/global_helpers.sh"
 _list_examples() {
     _set_opt nullglob
     for example in "$YATSH_ROOT/examples"/*; do
-        echo -e "${Y}$(basename $example)${RESET} # -- $(_extract 'DESCRIPTION' $example)"
+        echo -e "${Y}$(basename "${example}")${RESET} # -- $(_extract 'DESCRIPTION' $example)"
     done
     _unset_opt nullglob
 }

@@ -46,7 +46,7 @@ _find_session_file() {
     _set_opt nullglob
     for dir in $(_split_path $YATSH_SESSIONS_PATH); do
         for file in "${dir}"/*; do
-            [ "$(basename $file)" = "${name}" -a ! -d "$file" ] && echo $file && return 0
+            [ "$(basename "${file}")" = "${name}" -a ! -d "$file" ] && echo $file && return 0
         done
     done
     _unset_opt nullglob
