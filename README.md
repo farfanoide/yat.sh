@@ -23,11 +23,11 @@ Yat.sh is basically a set of shell scripts meaning the only dependency for it
 to work is tmux itself. You don't need ruby or any gem, just install it into
 your path and you're good to go.
 
-Traditionally, alternatives like [tmuxinator][tmuxinator] and [teamocil][teamocil] only let you
-have session files in one directory, which is great when you have a reduced
-number of them, but as you work on new projects your list rapidly grows,
-however, for the most part, you're only gonna use a few of those sessions at a
-time.
+Traditionally, alternatives like [tmuxinator][tmuxinator] and
+[teamocil][teamocil] only let you have session files in one directory, which is
+great when you have a reduced number of them, but as you work on new projects
+your list rapidly grows, however, for the most part, you're only gonna use a
+few of those sessions at a time.
 
 Yat.sh tries to solve this problem by allowing you to have different types of
 sessions, which we will explain shortly.
@@ -362,7 +362,7 @@ autoload -U compinit
 
 compinit
 
-fpath=(~/.zsh/completion $fpath)
+fpath=(~/.zsh/completions $fpath)
 ```
 
 If you're doing this by hand you'll probably want to execute this too:
