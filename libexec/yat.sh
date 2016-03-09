@@ -44,11 +44,12 @@ fi
 source "${YATSH_ROOT}/lib/global_helpers.sh"
 
 #= Colors and characters:
+export R=$(tput setaf 1)
+export G=$(tput setaf 2)
+export Y=$(tput setaf 3)
+export B=$(tput setaf 4)
 export TAB='  '
-export RESET='\033[0m'
-export G='\033[0;32m'
-export Y='\033[0;33m'
-export R='\033[0;31m'
+export RESET=$(tput sgr0)
 
 _usage() {
     echo -e "${G}${SCPT_NAME}${RESET} ==> Yet another Tmux session handler"
