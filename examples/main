@@ -1,3 +1,6 @@
+# -*- mode: sh -*-
+# vi: set ft=sh :
+
 #= AUTHOR: farfanoide (https://github.com/farfanoide)
 #= DESCRIPTION: Basic tmux global session
 
@@ -22,4 +25,3 @@ hsplit 'Downloads'
 # it easyer like `get_pane_base_index` and `get_window_base_index`
 paneindex=$(get_pane_base_index)
 send_line "Downloads.$(($paneindex + 1))" 'cd ~/Downloads ; ls'
-

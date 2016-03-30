@@ -1,3 +1,6 @@
+# -*- mode: sh -*-
+# vi: set ft=sh :
+
 #= AUTHOR: farfanoide (https://github.com/farfanoide)
 #= DESCRIPTION: Basic remote tmux session
 #= SERVER: user@server_ip -p 443
@@ -7,6 +10,3 @@
 new_session -n 'General'
 
 send_line 'General' 'ls'
-
-# -*- mode: sh -*-
-# vi: set ft=sh :

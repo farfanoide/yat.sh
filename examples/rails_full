@@ -1,3 +1,6 @@
+# -*- mode: sh -*-
+# vi: set ft=sh :
+
 #= AUTHOR: farfanoide (https://github.com/farfanoide)
 #= DESCRIPTION: Full fledged rails dev env (editor, console, db, server)
 
@@ -17,6 +20,3 @@ hsplit 'Server' -p "20"
 send_line 'Server'.1 'bundle exec rails server'
 
 select_window 'Editor'
-
-# -*- mode: sh -*-
-# vi: set ft=sh :
