@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-usage(){
+function usage()
+{
     echo -e "${SCPT_NAME} edit [SESSION]"
     echo -e "Edit [local] session file for editing."
 }
@@ -9,10 +10,11 @@ usage(){
 
 source "${YATSH_ROOT}/lib/global_helpers.sh"
 
-session_file="${YATSH_DIR}/sessions/$1"
+session_name="$1"
+session_file="$(_find_session_file "${session_name}")"
 
-if  _file_exists $session_file; then
+if _file_exists $session_file; then
     ${EDITOR:-vi} $session_file
 else
-    echo -e "${R}[ERROR] Session file not found.$RESET"
+    _abort "[ERROR] Session file not found."
 fi
