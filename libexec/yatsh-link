@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-usage() {
+function usage()
+{
     echo 'Link local session file to global directory'
     echo
     echo "Usage: $SCPT_NAME link SESSION"
@@ -10,12 +11,18 @@ usage() {
 
 [ "$1" = '--help' -o $# -lt 1 ] && usage && exit 0
 
-source=$1 ; shift
-link_session_file() {
-    if [ -f "./$source" -a ! -f "${YATSH_DIR}/sessions/${source}" ]; then
-        ln -s "$PWD/$source" "${YATSH_DIR}/sessions" && exit 0;
-    fi
-    exit 1
-}
+source "${YATSH_ROOT}/lib/global_helpers.sh"
 
-link_session_file
+source=$1 ; shift
+
+# TODO: add optional param to set name
+if _file_exists "${YATSH_DIR}/sessions/${source}"; then
+    _abort "Session file with that name already exists"
+fi
+
+if _file_exists ${source} ; then
+    _info "Linking ${source} into ${YATSH_DIR}"
+    ln -s "$PWD/$source" "${YATSH_DIR}/sessions"
+else
+    _abort "${source} could not be found."
+fi
