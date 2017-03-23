@@ -1,47 +1,71 @@
-_file_exists() {
-    [ -f "$1" -o -h "$1" ]
+function _abort()
+{
+    local message="$*"
+    echo -e "${R}${message}${RESET}" ; exit 1
 }
 
-_echo_example_file() {
+function _success()
+{
+    local message="$*"
+    echo -e "${G}${message}${RESET}"
+}
+
+function _info()
+{
+    local message="$*"
+    echo -e "${B}${message}${RESET}"
+}
+
+function _file_exists()
+{
+    local file=$1
+    [ -f "${file}" -o -h "${file}" ]
+}
+
+function _echo_example_file()
+{
     local example="${YATSH_ROOT}/examples/$1"
     _file_exists $example && cat $example || return 1
 }
 
-_check_for_tmux() {
-    [ -z "$(command -v tmux)" ] && echo -e "${R}tmux not found in your PATH${RESET}" && return 1
-}
-
-_capitalize() {
+function _capitalize()
+{
     echo "$*" | perl -pe 's/\S+/\u$&/g'
 }
 
-_is_command() {
+function _is_command()
+{
     local command="$1"; shift
     [ ! -z $(command -v yatsh-"$command") ]
 }
 
-_split_path() {
+function _split_path()
+{
     local path=$1
     echo "${path//:/$'\n'}"
 }
 
-_escape_slashes() {
+function _escape_slashes()
+{
     echo $* | perl -pe 's/\//\\\//g'
 }
 
-bin_path() {
+bin_path()
+{
     cmd=$1
     [[ "$(which $cmd)" =~ "alias" ]] && unalias "$cmd"
     echo $(dirname $(which $cmd))
 }
 
-_extract() {
+function _extract()
+{
     local keyword=$1; shift
     local file=$1   ; shift
     grep -i "#= ${keyword}:" $file | cut -d':' -f2
 }
 
-_find_session_file() {
+function _find_session_file()
+{
     local name=$1
     _set_opt nullglob
     for dir in $(_split_path $YATSH_SESSIONS_PATH); do
@@ -53,20 +77,26 @@ _find_session_file() {
     return 1
 }
 
-_all_session_paths() {
+function _all_session_paths()
+{
     _set_opt nullglob
     echo "${YATSH_SESSIONS_DIR}/*"
     _unset_opt nullglob
 }
 
-_all_session_names() {
+function _all_session_names()
+{
     echo $(\ls $YATSH_SESSIONS_DIR)
 }
 
-_set_opt()   {
+function _set_opt()
+{
     shopt -s $*
 }
 
-_unset_opt() {
+function _unset_opt()
+{
     shopt -u $*
 }
+
+# TODO: add function to check for tmux executable
