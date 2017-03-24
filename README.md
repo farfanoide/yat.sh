@@ -381,6 +381,26 @@ have a line lik this in yout `.bashrc`:
 source "path_to_yat_sh_completions/yat.sh.bash"
 ```
 
+Plugins:
+--------
+
+Yat.sh is extensible by plugins which can be written in any language, just
+create an executable called `yatsh-{subcommand_name}` and add it somewhere on
+the `$YATSH_PLUGINS_PATH` which follows the [XDG Base Directory Specification][xdg]
+and by default is (in order of precedence):
+
+```
+~/.local/share/yat.sh/plugins
+/usr/local/share/yat.sh/plugins
+/usr/share/yat.sh/plugins
+```
+
+after that you can call your plugin like any other yat.sh subcommand:
+
+```bash
+yat.sh {subcommand_name} [arguments]
+```
+
 License:
 --------
 
@@ -395,7 +415,6 @@ Contributing:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-- [ ] TODO ## Plugins:
 - [ ] TODO ## Test:
 
 
@@ -404,4 +423,5 @@ Contributing:
 [tmuxstart]:https://github.com/treyhunner/tmuxstart
 [tmuxinator]:https://github.com/tmuxinator/tmuxinator
 [teamocil]:https://github.com/remiprev/teamocil
+[xdg]:https://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
 <!-- end links -->
