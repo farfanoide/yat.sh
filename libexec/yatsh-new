@@ -33,7 +33,12 @@ example_session=$(_echo_example_file $example_name || _echo_example_file 'main')
 # EDITOR not explicitly set or uses vim
 if [[ -z $EDITOR || $EDITOR =~ 'vi' ]] ; then
     # create a buffer with dummy content in $TMUXSTART_DIR
-    echo "$example_session" | ${EDITOR:-vi} - "+file $session_file"
+    echo "$example_session" | ${EDITOR:-vi} - "+file $session_file"\
+        "+set pvh=80" \
+        "+let &fen=0" \
+        "+set shm=at" \
+        "+set ch=2" \
+        "+vert ped ${YATSH_ROOT}/lib/session_helpers.sh"
 else
     echo "$example_session" > $session_file && $EDITOR $session_file
 fi
