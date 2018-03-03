@@ -11,6 +11,7 @@ source "${YATSH_ROOT}/lib/global_helpers.sh"
 source "${YATSH_ROOT}/lib/session_helpers.sh"
 
 SESSION=$1
+DAEMON=$2
 TMUX_OLD=$TMUX
 TMUX=
 if ! tmux has-session -t $SESSION 2> /dev/null ; then
@@ -30,9 +31,12 @@ if ! tmux has-session -t $SESSION 2> /dev/null ; then
         fi
     fi
 fi
-if [ "$TMUX_OLD" = "" ]; then
-    tmux attach-session -t $SESSION
-else
-    tmux switch-client -t $SESSION
+if [ -z "$DAEMON" ]; then
+   if [ "$TMUX_OLD" = "" ]; then
+       tmux attach-session -t $SESSION
+   else
+       tmux switch-client -t $SESSION
+   fi
 fi
+
 TMUX=$TMUX_OLD
