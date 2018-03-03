@@ -69,6 +69,7 @@ _usage() {
     echo -e "${TAB}${Y}close   ${RESET} -- Close [all] session[s]."
     echo -e "${TAB}${Y}new     ${RESET} -- Create new [local] session file [from example]."
     echo -e "${TAB}${Y}remote  ${RESET} -- Launch/load remote session."
+    echo -e "${TAB}${Y}service ${RESET} -- Setup a user service with systemd."
     echo -e "${TAB}${Y}version ${RESET} -- Print ${SCPT_NAME} version number."
 }
 [ "$1" = '--help' -o $# -lt 1 ] && _usage && exit 1

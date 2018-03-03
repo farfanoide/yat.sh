@@ -5,10 +5,9 @@ After=ssh-agent.service
 [Service]
 Type=forking
 Environment="SSH_AUTH_SOCK=%t/keyring/ssh"
-Environment="EMACS_DAEMON=%i"
 Environment="TERM=xterm-256color"
-ExecStart=/home/krahser/.bin/yat.sh %i
-ExecStop=/home/krahser/.bin/yat.sh close %i
+ExecStart=%h/.bin/yat.sh %i daemon
+ExecStop=%h/.bin/yat.sh close %i
 
 [Install]
 WantedBy=default.target

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+usage() {
+    echo -e "Setup ${SCPT_NAME} as a user service with systemd"
+    echo -e "Usage: ${SCPT_NAME} [EXAMPLENAME]"
+}
+
+[ "$1" = "--help" ] && usage && exit 0
+
+source "${YATSH_ROOT}/lib/global_helpers.sh"
+
+_setup() {
+    _set_opt nullglob
+    _systemd=~/.config/systemd/user/
+    mkdir -p ${_systemd}
+    cp ./init/yat@.service ${_systemd}/
+    sed  -i.bak "s#%h#${HOME}#g" ${_systemd}/yat@.service
+    _unset_opt nullglob
+}
+
+
+
+_setup
+
+#_list_examples | column -t -s'#'
