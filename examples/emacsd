@@ -1,0 +1,9 @@
+# -*- mode: sh -*-
+# vi: set ft=sh :
+
+#= AUTHOR: krahser (https://github.com/krahser)
+#= DESCRIPTION: Basic tmux global session
+
+new_session -d -n 'Emacs'
+send_line 'Emacs' 'if [ ! -f /tmp/$USER/emacs1000/$(tmux display-message -p "#S") ]; then /usr/bin/emacs --daemon=$(tmux display-message -p "#S"); fi'
+send_line 'Emacs' 'emacsclient -s /tmp/$USER/emacs1000/$(tmux display-message -p "#S") -t'
