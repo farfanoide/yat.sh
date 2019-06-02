@@ -37,7 +37,7 @@ _remote_session_name() {
     [ ! -z "$remote_session" ] && echo $remote_session || echo $session_file
 }
 
-session_file="$YATSH_SESSIONS_DIR/$1"; shift
+session_file="$1"; shift
 session_name="$(_remote_session_name)"
 
 _remote_script(){
