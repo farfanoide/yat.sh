@@ -10,7 +10,26 @@ usage() {
 source "$YATSH_ROOT/lib/global_helpers.sh"
 
 _strip_comments() {
-     perl -pe 's/#.*$//' $1
+    perl -pe 's/#.*$//' $1
+}
+
+_bracket_semicolon() {
+    perl -pe 's/}\n/}; /g'
+}
+
+_eol_semicolon() {
+    perl -pe 's/^\n//g' \
+         | perl -pe 's/\n/; /g'
+}
+
+_format_helper() {
+    _strip_comments $1 \
+        | _bracket_semicolon
+}
+
+_format_session() {
+    _strip_comments $1 \
+        | _eol_semicolon
 }
 
 _remote_session_name() {
@@ -18,29 +37,52 @@ _remote_session_name() {
     [ ! -z "$remote_session" ] && echo $remote_session || echo $session_file
 }
 
-session_file="$YATSH_SESSIONS_DIR/$1"; shift
+session_file="$1"; shift
 session_name="$(_remote_session_name)"
 
 _remote_script(){
 cat <<EOS
 if tmux has-session -t ${session_name} 2> /dev/null ; then
-    tmux attach-session -t ${session_name}
+    tmux attach-session -t ${session_name};
 else
-    SESSION=${session_name}
-    $(_strip_comments "${YATSH_ROOT}/lib/session_helpers.sh")
-    SESSION=${session_name} $(_strip_comments $session_file)
-    tmux attach-session -t ${session_name}
+    SESSION=${session_name};
+    $(_format_helper "${YATSH_ROOT}/lib/session_helpers.sh")
+    SESSION=${session_name} $(_format_session $session_file)
+    tmux attach-session -t ${session_name};
 fi
 EOS
 }
 
-if _file_exists $session_file; then
+_check_server(){
     server=$(_extract 'SERVER' $session_file)
-    remote_script=$(_remote_script)
-    if [ ! -z $server ]; then
-        ssh $server -t -- "${remote_script}"
-    else
+    if [ -z $server ]; then
         echo -e "${R} No server specified. ${RESET}" && usage && exit 1
     fi
-fi
+}
 
+connect(){
+if _file_exists $session_file; then
+    server=$(_extract 'SERVER' $session_file)
+    service=$(_extract 'SERVICE' $session_file)
+    remote_script=$(_remote_script)
+    _check_server
+    case "$service" in
+        " ssh")
+            $service $server -t -- "${remote_script}"
+            ;;
+        " mosh")
+            echo ${remote_script} | ssh $server "cat > /tmp/yat-${session_name}; chmod +x /tmp/yat-${session_name}"
+            $service $server --no-init -- "/tmp/yat-${session_name}"
+            ;;
+        *)
+            echo -e "${Y}Service not defined yet, please let us know at https://github.com/farfanoide/yat.sh. ${RESET}" && usage && exit 1
+    esac
+fi
+}
+connect
+# if [ -z $TMUX ]; then
+#     tmux detach-client
+#     connect
+# else
+#     connect
+# fi
