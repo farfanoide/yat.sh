@@ -76,7 +76,7 @@ and "Remote".
     Why can't we manage tmux sessions in our servers the same way we do on our
     own computers?. Yat.sh gives us the ability to startup and attach to tmux
     sessions running on other hosts in a simple and transparent way.  Currently
-    remote connections are done via ssh, but mosh support is on the way.
+    remote connections are done via ssh or mosh.
 
 Installation:
 -------------
