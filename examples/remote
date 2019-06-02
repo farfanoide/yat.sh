@@ -4,6 +4,7 @@
 #= AUTHOR: farfanoide (https://github.com/farfanoide)
 #= DESCRIPTION: Basic remote tmux session
 #= SERVER: user@server_ip -p 443
+#= SERVICE: ssh
 #= NAME: Remote Session
 #= LOADER: remote
 
