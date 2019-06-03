@@ -222,7 +222,6 @@ server.
 ```bash
 
     #= SERVER: root@myserver
-
     #= NAME: remote_session_name
 
     new_session -n 'General'
@@ -234,10 +233,14 @@ server.
     $ yat.sh remote remote_session
 ```
 
-In the previous example we are creating a session named
-'remote_session_name' on 'myserver' as the user 'root'. Note that
-connections are done via ssh which means that you can use aliases from your
-`~/.ssh/config`
+In the previous example we are creating a session named 'remote_session_name' on
+'myserver' as the user 'root'. Note that connections are done by default via ssh
+which means that you can use aliases from your `~/.ssh/config`. if you want to
+use mosh you have to also specify a `SERVICE` data attribute like so:
+
+```bash
+    #= SERVICE: mosh
+```
 
 #### Version
 
