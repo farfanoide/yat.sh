@@ -64,6 +64,7 @@ connect(){
 if _file_exists $session_file; then
     server=$(_extract 'SERVER' $session_file)
     service=$(_extract 'SERVICE' $session_file)
+    [ -z $service ] && service=' ssh'
     remote_script=$(_remote_script)
     _check_server
     case "$service" in
