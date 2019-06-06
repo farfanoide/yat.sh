@@ -48,10 +48,16 @@ else
     SESSION=${session_name};
     $(_format_helper "${YATSH_ROOT}/lib/session_helpers.sh")
     SESSION=${session_name} $(_format_session $session_file)
+    tmux source-file -q /tmp/tmux-${session_name}.conf;
     tmux attach-session -t ${session_name};
 fi
 EOS
 }
+
+_set_socket(){
+    perl -pe "s/tmux /tmux -S \/tmp\/yat /g"
+}
+
 
 _check_server(){
     server=$(_extract 'SERVER' $session_file)
@@ -60,13 +66,23 @@ _check_server(){
     fi
 }
 
+_tmux_config(){
+    server=$(_extract 'SERVER' $session_file)
+    send_config=$(_extract 'TMUX_CONFIG' $session_file)
+    if [ "${send_config}" = " yes" ]; then
+        scp -q ~/.tmux.conf ${server}:/tmp/tmux-${session_name}.conf
+    fi
+}
+
 connect(){
 if _file_exists $session_file; then
     server=$(_extract 'SERVER' $session_file)
     service=$(_extract 'SERVICE' $session_file)
     [ -z $service ] && service=' ssh'
-    remote_script=$(_remote_script)
     _check_server
+    _tmux_config
+    remote_script=$(_remote_script | _set_socket )
+
     case "$service" in
         " ssh")
             $service $server -t -- "${remote_script}"

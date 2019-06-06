@@ -242,6 +242,13 @@ use mosh you have to also specify a `SERVICE` data attribute like so:
     #= SERVICE: mosh
 ```
 
+If you want to use your local tmux configuration `~/.tmux.conf`
+on the remote session you have to define the attribute:
+
+```bash
+    #= TMUX_CONFIG: yes
+```
+
 #### Version
 
     Print yat.sh version number.
