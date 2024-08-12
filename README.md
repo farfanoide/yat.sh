@@ -73,6 +73,8 @@ The session files are placed either on the current path, or inside a local folde
     tmuxinator.  A global session would, for example `cd` into some directory
     before executing a command.
 
+This session files are placed at ${HOME}/.yat.sh/sessions
+
 ### Remote Sessions:
 
     Why can't we manage tmux sessions in our servers the same way we do on our
