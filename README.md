@@ -65,6 +65,8 @@ and "Remote".
     whenever we want to work back on it, without having it cluttering our
     sessions list every day.
 
+The session files are placed either on the current path, or inside a local folder `.yat.sh`
+
 ### Global Sessions:
 
     Globals are... 'just sessions' in the sense that we're accustomed with
