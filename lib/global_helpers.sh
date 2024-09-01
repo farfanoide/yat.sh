@@ -99,4 +99,26 @@ function _unset_opt()
     shopt -u $*
 }
 
+function _create_session()
+{
+    if ! tmux has-session -t $SESSION 2> /dev/null ; then
+
+        session_file="$(_find_session_file $SESSION)"
+        if [ -z "$session_file" ]; then
+            tmux new-session -d -s $SESSION
+        else
+            if [ -h $session_file ]; then
+                session_name=$(_extract 'SESSION' $session_file | tr -d ' ')
+                [ ! -z $session_name ] && SESSION=${session_name}
+            fi
+            custom_loader=$(_extract 'LOADER' $session_file | tr -d ' ')
+            if [ ! -z $custom_loader ] && _is_command $custom_loader; then
+                exec yatsh-$custom_loader $session_file
+            else
+                source $session_file
+            fi
+        fi
+    fi
+}
+
 # TODO: add function to check for tmux executable
