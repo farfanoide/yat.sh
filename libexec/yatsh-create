@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 usage(){
-    echo -e "Start/Attach tmux session."
+    echo -e "Create deattached tmux session."
     echo -e "Usage: ${SCPT_NAME} SESSION"
 }
 
@@ -16,13 +16,3 @@ TMUX_OLD=$TMUX
 TMUX=
 
 _create_session
-
-if [ -z "$DAEMON" ]; then
-   if [ "$TMUX_OLD" = "" ]; then
-       tmux attach-session -t $SESSION
-   else
-       tmux switch-client -t $SESSION
-   fi
-fi
-
-TMUX=$TMUX_OLD
