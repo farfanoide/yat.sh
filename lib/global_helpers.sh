@@ -99,4 +99,10 @@ function _unset_opt()
     shopt -u $*
 }
 
-# TODO: add function to check for tmux executable
+function _check_tmux()
+{
+    which tmux > /dev/null
+    if [ $? -ge 1 ]; then
+        _abort "tmux is not present on the path, please check your installation"
+    fi
+}

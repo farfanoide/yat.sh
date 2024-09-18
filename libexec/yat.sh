@@ -51,6 +51,8 @@ export B=$(tput setaf 4)
 export TAB='  '
 export RESET=$(tput sgr0)
 
+_check_tmux
+
 _usage() {
     echo -e "${G}${SCPT_NAME}${RESET} ==> Yet another Tmux session handler"
     echo
@@ -94,4 +96,3 @@ if _is_command $arg; then
 else
     exec yatsh-load $arg $*
 fi
-
